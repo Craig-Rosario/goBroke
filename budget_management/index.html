@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Broke</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="sideBar">
+        <h2>GoBroke</h2>
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Income Tracker</li>
+                <li>Expense Tracker</li>
+                <li>Reminders</li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="mainContainer">
+        <header>
+            <h1>Dashboard</h1>
+            <p>Welcome back, Craig</p> 
+        </header>
+
+        <div class="totalSavings">
+            <h3>Total Savings</h3>
+            <div class="savings-card">
+                <canvas id="goalChart"></canvas>
+                <p class="savings-amount">₹5,432,000</p>
+            </div>
+        </div>
+
+        <div class="analytics">
+            <div class="card">
+                <h4>Income</h4>
+                <p class="income">₹89,000.70</p>
+                <canvas id="incomeChart"></canvas>
+            </div>
+            <div class="card">
+                <h4>Expenses</h4>
+                <p class="expenses">₹42,000.30</p>
+                <canvas id="expenseChart"></canvas>
+            </div>
+            <div class="reminders">
+                <h3>Reminders</h3>
+                <ul class="remindersList">
+                    <li>Electricity Bill - ₹2,100</li>
+                    <li>Internet Subscription - ₹5,000</li>
+                    <li>Credit Card Payment - ₹17,000</li>
+                    <li>Stationary Supplies - ₹2,199</li>
+                    <li>Book Supplies - ₹899</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="script.js"></script>
+</body>
+</html>
