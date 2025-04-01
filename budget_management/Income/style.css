@@ -145,6 +145,11 @@ body {
     margin-top: auto;
 }
 
+.logout li a{
+    text-decoration: none;
+    color: inherit; 
+}
+
 .sideBar nav ul li:hover, .sideBar .logout li:hover {
     background-color: #495064;
 }
