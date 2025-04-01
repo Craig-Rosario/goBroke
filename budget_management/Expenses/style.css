@@ -7,18 +7,17 @@
 
 body {
     display: flex;
-    min-height: 100vh;  
+    min-height: 100vh;
     background-color: #282C37;
     color: #fff;
 }
 
-
 .sideBar {
     display: flex;
-    flex-direction: column;  
-    min-height: 100vh;  
-    position: fixed;         
-    width: 250px;  
+    flex-direction: column;
+    min-height: 100vh;
+    position: fixed;
+    width: 250px;
     background-color: #1E212B;
     padding: 20px;
     transition: transform 0.3s ease, width 0.3s ease;
@@ -27,12 +26,10 @@ body {
 }
 
 .sideBar.collapsed {
-    width: 60px;  
+    width: 60px;
     padding: 20px 10px;
-    transform: translateX(0); 
+    transform: translateX(0);
 }
-
-
 
 .sideBar h2 {
     transition: opacity 0.3s ease;
@@ -47,7 +44,7 @@ body {
     transition: 0.3s;
 }
 
-.sideBarTitle h3{
+.sideBarTitle h3 {
     margin-left: 5px;
     margin-bottom: 10px;
 }
@@ -66,7 +63,6 @@ body {
     margin: 15px 0;
 }
 
-
 .sideBar.collapsed .fullText {
     display: none;
 }
@@ -75,37 +71,35 @@ body {
     display: inline;
 }
 
-
-
-
 .toggleButton {
     background: transparent;
     border: none;
-    color: #fff;                  
-    font-size: 24px;              
-    cursor: pointer;              
-    transition: 0.3s;             
-    padding: 5px;                
-    border-radius: 5px; 
-    margin-left: 8px;          
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 8px;
 }
 
 .toggleButton:hover {
-    background: #495064;          
+    background: #495064;
 }
 
 .sideBar nav ul li a {
     text-decoration: none;
-    color: inherit; 
+    color: inherit;
 }
 
-
-.sideBar nav ul, .sideBar .logout {
+.sideBar nav ul,
+.sideBar .logout {
     list-style: none;
     padding: 0;
 }
 
-.sideBar nav ul li, .sideBar .logout li {
+.sideBar nav ul li,
+.sideBar .logout li {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -114,56 +108,50 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
-    white-space: nowrap;   
-    overflow: hidden;      
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-
 .sideBar ul li i {
-    font-size: 22px;   
+    font-size: 22px;
     transition: color 0.3s;
 }
 
-
 .sideBar.collapsed nav ul li span,
 .sideBar.collapsed .logout li span {
-    display: none;       
+    display: none;
 }
-
 
 .sideBar.collapsed nav ul li i,
 .sideBar.collapsed .logout li i {
-    font-size: 24px;      
-    margin: 0 auto;       
+    font-size: 24px;
+    margin: 0 auto;
     transition: 0.3s;
 }
 
-
-.sideBar nav ul li:hover, .sideBar .logout li:hover {
+.sideBar nav ul li:hover,
+.sideBar .logout li:hover {
     background-color: #495064;
 }
-
-
-
 
 .logout {
     margin-top: auto;
 }
 
-.logout li a{
+.logout li a {
     text-decoration: none;
-    color: inherit; 
+    color: inherit;
 }
 
-.sideBar nav ul li:hover, .sideBar .logout li:hover {
+.sideBar nav ul li:hover,
+.sideBar .logout li:hover {
     background-color: #495064;
 }
-
 
 .mainContainer {
     flex: 1;
     margin-left: 250px;
-    overflow-y: auto; 
+    overflow-y: auto;
     padding: 20px;
     transition: margin-left 0.3s ease;
 }
@@ -178,33 +166,30 @@ header h1 {
     font-size: 30px;
 }
 
-
-.income{
+.income {
     display: flex;
     flex-direction: row;
-    
 }
 
-
-.totalIncome{
+.totalIncome {
     margin: 35px 35px 35px 0;
     font-size: 22px;
     width: 60%;
 }
-.totalIncome h3{
+
+.totalIncome h3 {
     color: white;
 }
 
-.incomeChart{
+.incomeChart {
     margin: 35px;
     font-size: 22px;
     width: 60%;
 }
 
-.incomeChart h3{
+.incomeChart h3 {
     color: white;
 }
-
 
 .incomeCard {
     margin-top: 20px;
@@ -219,8 +204,6 @@ header h1 {
     align-items: center;
 }
 
-
-
 .analytics {
     display: flex;
     gap: 20px;
@@ -230,16 +213,14 @@ header h1 {
     width: 95%;
 }
 
-.analytics h3{
+.analytics h3 {
     font-size: 22px;
 }
-
 
 .incomeTable {
     background-color: #1E212B;
     padding: 20px;
     border-radius: 10px;
-    
     width: 100%;
 }
 
@@ -289,6 +270,59 @@ header h1 {
     font-weight: bold;
 }
 
-.btns:hover{
+.btns:hover {
+    cursor: pointer;
+}
+
+/* Styles for Add/Edit/Delete Functionality */
+#expensesTable input[type="text"],
+#expensesTable input[type="number"],
+#expensesTable input[type="date"] {
+    background-color: #3A3F50;
+    color: #fff;
+    border: 1px solid #505870;
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+#expensesTable button {
+    background-color: #00FF7F;
+    color: #282C37;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#expensesTable button.save-btn {
+    background-color: #00FF7F;
+}
+
+#expensesTable button.cancel-btn {
+    background-color: #FF4C4C;
+}
+
+#expensesTable button:hover {
+    background-color: #00CC66;
+}
+
+#addExpenseBtn {
+    background-color: #00FF7F;
+    color: #282C37;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+#addExpenseBtn:hover {
+    background-color: #00CC66;
+}
+
+.delete-btn {
     cursor: pointer;
 }

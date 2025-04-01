@@ -6,11 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Go Broke</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-
 </head>
 
 <body>
@@ -18,10 +15,8 @@
         <div class="sideBarTitle">
             <h2><span class="fullText"><span class="red">Go</span><span class="green">Broke</span></span></h2>
             <h3><span class="shortText"><span class="red">g</span><span class="green">B</span></span></h3>
-
             <button class="toggleButton" onclick="toggleSideBar()"><i class="fa-solid fa-bars"></i></button>
         </div>
-
         <nav>
             <ul>
                 <li><a href="../Dashboard/index.html"><i class="fas fa-home"></i> <span>Home</span></a></li>
@@ -30,12 +25,10 @@
                 <li><i class="fas fa-bell"></i> <span>Reminders</span></li>
             </ul>
         </nav>
-
         <ul class="logout">
             <li><a href="../Login/login.html"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></a></li>
         </ul>
     </div>
-
 
     <div class="mainContainer">
         <header>
@@ -64,52 +57,112 @@
             <h3>All Expenses</h3>
             <div class="incomeTable">
                 <div class="tableCard">
-                    <table>
-                        <tr>
-                            <th>Name</th>
-                            <th>Amount</th>
-                            <th>Date</th>
-                            <th>Category</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                        <tr>
-                            <td>Salary</td>
-                            <td style="color:#FF4C4C">$8000</td>
-                            <td>1/2/25</td>
-                            <td>Job/Employment</td>
-                            <td class="btns"><i class="fa-solid fa-file-pen"></i></td>
-                            <td class="btns" style="color: red;"><i class="fa-solid fa-trash"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Salary</td>
-                            <td style="color:#FF4C4C">$8000</td>
-                            <td>1/2/25</td>
-                            <td>Job/Employment</td>
-                            <td class="btns"><i class="fa-solid fa-file-pen"></i></td>
-                            <td class="btns" style="color: red;"><i class="fa-solid fa-trash"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Salary</td>
-                            <td style="color:#FF4C4C">$8000</td>
-                            <td>1/2/25</td>
-                            <td>Job/Employment</td>
-                            <td class="btns"><i class="fa-solid fa-file-pen"></i></td>
-                            <td class="btns" style="color: red;"><i class="fa-solid fa-trash"></i></td>
-                        </tr>
-                        
+                    <table id="expensesTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Category</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Salary</td>
+                                <td style="color:#FF4C4C">$8000</td>
+                                <td>1/2/25</td>
+                                <td>Job/Employment</td>
+                                <td class="btns"><i class="fa-solid fa-file-pen"></i></td>
+                                <td class="btns delete-btn" style="color: red;"><i class="fa-solid fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Rent</td>
+                                <td style="color:#FF4C4C">$1200</td>
+                                <td>1/5/25</td>
+                                <td>Housing</td>
+                                <td class="btns"><i class="fa-solid fa-file-pen"></i></td>
+                                <td class="btns delete-btn" style="color: red;"><i class="fa-solid fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Groceries</td>
+                                <td style="color:#FF4C4C">$300</td>
+                                <td>1/10/25</td>
+                                <td>Food</td>
+                                <td class="btns"><i class="fa-solid fa-file-pen"></i></td>
+                                <td class="btns delete-btn" style="color: red;"><i class="fa-solid fa-trash"></i></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6">
+                                    <button id="addExpenseBtn">Add Expense</button>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
-
             </div>
-
-
         </div>
     </div>
-    </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const expensesTable = document.getElementById('expensesTable').getElementsByTagName('tbody')[0];
+            const addExpenseBtn = document.getElementById('addExpenseBtn');
 
-    <script src="script.js"></script>
+            addExpenseBtn.addEventListener('click', function () {
+                const newRow = expensesTable.insertRow();
+                newRow.innerHTML = `
+                    <td><input type="text" placeholder="Name"></td>
+                    <td><input type="number" placeholder="Amount"></td>
+                    <td><input type="date"></td>
+                    <td><input type="text" placeholder="Category"></td>
+                    <td class="btns"><button class="save-btn">Save</button></td>
+                    <td class="btns"><button class="cancel-btn">Cancel</button></td>
+                `;
+
+                // Attach event listeners to the newly created buttons
+                const saveBtn = newRow.querySelector('.save-btn');
+                const cancelBtn = newRow.querySelector('.cancel-btn');
+
+                saveBtn.addEventListener('click', function () {
+                    const name = newRow.cells[0].querySelector('input').value;
+                    const amount = newRow.cells[1].querySelector('input').value;
+                    const date = newRow.cells[2].querySelector('input').value;
+                    const category = newRow.cells[3].querySelector('input').value;
+
+                    if (name && amount && date && category) {
+                        newRow.innerHTML = `
+                            <td>${name}</td>
+                            <td style="color:#FF4C4C">$${amount}</td>
+                            <td>${date}</td>
+                            <td>${category}</td>
+                            <td class="btns"><i class="fa-solid fa-file-pen"></i></td>
+                            <td class="btns delete-btn" style="color: red;"><i class="fa-solid fa-trash"></i></td>
+                        `;
+                        addDeleteListener(newRow.querySelector('.delete-btn'));
+                    } else {
+                        alert('Please fill in all fields.');
+                    }
+                });
+
+                cancelBtn.addEventListener('click', function () {
+                    expensesTable.deleteRow(newRow.rowIndex);
+                });
+            });
+
+            function addDeleteListener(element) {
+                element.addEventListener('click', function () {
+                    expensesTable.deleteRow(this.parentNode.parentNode.rowIndex);
+                });
+            }
+
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(addDeleteListener);
+        });
+    </script>
 </body>
 
 </html>
