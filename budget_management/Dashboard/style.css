@@ -90,6 +90,10 @@ body {
 }
 
 
+.sideBar nav ul li a {
+    text-decoration: none;
+    color: inherit; 
+}
 
 .sideBar nav ul, .sideBar .logout {
     list-style: none;
