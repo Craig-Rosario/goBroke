@@ -47,6 +47,11 @@ body {
     transition: 0.3s;
 }
 
+.sideBarTitle h3{
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
 
 .red {
     color: #FF4C4C;
@@ -82,7 +87,8 @@ body {
     cursor: pointer;              
     transition: 0.3s;             
     padding: 5px;                
-    border-radius: 5px;           
+    border-radius: 5px;
+    margin-left: 8px;           
 }
 
 .toggleButton:hover {
