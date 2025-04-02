@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Broke</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+</head>
+
+<body>
+    <div class="sideBar">
+        <div class="sideBarTitle">
+            <h2><span class="fullText"><span class="red">Go</span><span class="green">Broke</span></span></h2>
+            <h3><span class="shortText"><span class="red">g</span><span class="green">B</span></span></h3>
+
+            <button class="toggleButton" onclick="toggleSideBar()"><i class="fa-solid fa-bars"></i></button>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="../Dashboard/index.html"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                <li><a href="../Income/index.html"><i class="fas fa-wallet"></i> <span>Income Tracker</span></a></li>
+                <li><a href="../Expenses/index.html"><i class="fas fa-chart-line"></i> <span>Expense Tracker</span></a></li>
+                <li><a href="../Reminders/index.html"><i class="fas fa-bell"></i> <span>Reminders</span></a></li>
+            </ul>
+        </nav>
+
+        <ul class="logout">
+            <li><a href="../Login/login.html"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></a></li>
+        </ul>
+    </div>
+
+
+    <div class="mainContainer">
+        <header>
+            <h1>Reminders</h1>
+        </header>
+
+        <div class="income">
+            <div class="totalIncome">
+                <h3>Upcoming Bills</h3>
+                <div class="incomeCard">
+                    <canvas id="goalChart"></canvas>
+                    <p class="income-amount">₹5,432,000</p>
+                </div>
+            </div>
+
+            <div class="incomeChart">
+                <h3>Reminder recipt</h3>
+                <div class="incomeCard">
+                    <canvas id="goalChart"></canvas>
+                    <p class="income-amount">₹5,432,000</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="analytics">
+            <h3>All Reminders</h3>
+            <button class="addBtn"><i class="fa-solid fa-plus"></i>Add</button>
+            <div class="incomeTable">
+                <div class="tableCard">
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                        <tr>
+                            <td>Salary</td>
+                            <td style="color:#00FF7F">$8000</td>
+                            <td>1/2/25</td>
+                            <td class="btns"><i class="fa-solid fa-file-pen"></i></td>
+                            <td class="btns" style="color: red;"><i class="fa-solid fa-trash"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Salary</td>
+                            <td style="color:#00FF7F">$8000</td>
+                            <td>1/2/25</td>
+                            <td class="btns"><i class="fa-solid fa-file-pen"></i></td>
+                            <td class="btns" style="color: red;"><i class="fa-solid fa-trash"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Salary</td>
+                            <td style="color:#00FF7F">$8000</td>
+                            <td>1/2/25</td>
+                            <td class="btns"><i class="fa-solid fa-file-pen"></i></td>
+                            <td class="btns" style="color: red;"><i class="fa-solid fa-trash"></i></td>
+                        </tr>
+                        
+                    </table>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -234,6 +234,19 @@ header h1 {
     font-size: 22px;
 }
 
+.addBtn{
+    background-color: #1E212B;
+    border: none;
+    color: white;
+    padding: 7px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.addBtn:hover{
+    background-color: #495064;
+}
 
 .incomeTable {
     background-color: #1E212B;
