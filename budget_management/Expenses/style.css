@@ -306,3 +306,101 @@ header h1 {
 .btns:hover{
     cursor: pointer;
 }
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+}
+
+.addForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;   
+}
+
+.addForm,.overlay{
+    display: none;
+}
+
+.addFormCard {
+    background: #333745;
+    padding: 20px;
+    border-radius: 12px;
+    width: 400px; 
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.addFormCard label {
+    color: white;
+    display: block;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.addFormCard input {
+    background-color: #505870;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    width: 100%;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.addFormCard input:focus {
+    outline: 2px solid #fff;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: white;
+}
+
+
+.submitForm{
+    background-color: #00FF7F;
+    border: none;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.submitForm:hover{
+    background-color: #22da7e;
+}
+
+.editForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    display: none;
+}
+
+.editOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    display: none;
+}
+

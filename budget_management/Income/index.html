@@ -26,13 +26,15 @@
             <ul>
                 <li><a href="../Dashboard/index.html"><i class="fas fa-home"></i> <span>Home</span></a></li>
                 <li><a href="../Income/index.html"><i class="fas fa-wallet"></i> <span>Income Tracker</span></a></li>
-                <li><a href="../Expenses/index.html"><i class="fas fa-chart-line"></i> <span>Expense Tracker</span></a></li>
+                <li><a href="../Expenses/index.html"><i class="fas fa-chart-line"></i> <span>Expense Tracker</span></a>
+                </li>
                 <li><a href="../Reminders/index.html"><i class="fas fa-bell"></i> <span>Reminders</span></a></li>
             </ul>
         </nav>
 
         <ul class="logout">
-            <li><a href="../Login/login.html"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></a></li>
+            <li><a href="../Login/login.html"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></a>
+            </li>
         </ul>
     </div>
 
@@ -62,7 +64,7 @@
 
         <div class="analytics">
             <h3>All Incomes</h3>
-            <button class="addBtn"><i class="fa-solid fa-plus"></i>Add</button>
+            <button class="addBtn" onclick="openForm()"><i class="fa-solid fa-plus"></i>Add</button>
             <div class="incomeTable">
                 <div class="tableCard">
                     <table>
@@ -79,7 +81,7 @@
                             <td style="color:#00FF7F">$8000</td>
                             <td>1/2/25</td>
                             <td>Job/Employment</td>
-                            <td class="btns"><i class="fa-solid fa-file-pen"></i></td>
+                            <td class="btns" onclick="openEditForm()"><i class="fa-solid fa-file-pen"></i></td>
                             <td class="btns" style="color: red;"><i class="fa-solid fa-trash"></i></td>
                         </tr>
                         <tr>
@@ -98,7 +100,7 @@
                             <td class="btns"><i class="fa-solid fa-file-pen"></i></td>
                             <td class="btns" style="color: red;"><i class="fa-solid fa-trash"></i></td>
                         </tr>
-                        
+
                     </table>
                 </div>
 
@@ -106,6 +108,72 @@
 
 
         </div>
+    </div>
+
+    <div class="incomeOverlay" id="incomeOverlay"></div>
+
+
+    <div class="addIncomeForm" id="addForm">
+        <div class="addIncomeFormCard">
+            <h1>Add New Income</h1>
+            <button class="closeBtn" onclick="closeForm()"><i class="fa-solid fa-xmark"></i></button>
+    
+            <form method="POST" action="add_income.php">
+                <div class="incomeName">
+                    <label for="incomeName">Income Name</label>
+                    <input type="text" id="incomeName" name="income_name" placeholder="Income" required>
+                </div>
+                <div class="incomeAmt">
+                    <label for="incomeAmt">Income Amount</label>
+                    <input type="number" id="incomeAmt" name="income_amount" placeholder="Enter Amount" required>
+                </div>
+                <div class="incomeDate">
+                    <label for="incomeDate">Income Date</label>
+                    <input type="date" id="incomeDate" name="income_date" required>
+                </div>
+                <div class="incomeCat">
+                    <label for="incomeCat">Income Category</label>
+                    <input type="text" id="incomeCat" name="income_category" placeholder="Enter Category" required>
+                </div>
+                <button class="submitForm" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="editIncomeOverlay" id="editOverlay"></div>
+
+
+    <div class="editIncomeForm" id="editForm">
+        <div class="addIncomeFormCard">
+            <h1>Edit Income</h1>
+            <button class="closeBtn" onclick="closeEditForm()"><i class="fa-solid fa-xmark"></i></button>
+    
+            <form method="POST" action="edit_income.php">
+                <input type="hidden" id="editId" name="income_id">
+    
+                <div class="incomeName">
+                    <label for="editIncomeName">Income Name</label>
+                    <input type="text" id="editIncomeName" name="income_name" required>
+                </div>
+                <div class="incomeAmt">
+                    <label for="editIncomeAmt">Income Amount</label>
+                    <input type="number" id="editIncomeAmt" name="income_amount" required>
+                </div>
+                <div class="incomeDate">
+                    <label for="editIncomeDate">Income Date</label>
+                    <input type="date" id="editIncomeDate" name="income_date" required>
+                </div>
+                <div class="incomeCat">
+                    <label for="editIncomeCat">Income Category</label>
+                    <input type="text" id="editIncomeCat" name="income_category" required>
+                </div>
+    
+                <button class="submitForm" type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+    
+
     </div>
     </div>
 
