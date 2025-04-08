@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,31 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>GoBroke - Login</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <style>
-        .wrap2, form {
-            width: 100%;
-        }
-
-        .mail, .pass {
-            width: 100%;
-        }
-
-        .mail input, .pass input {
-            width: 100% !important;
-            padding: 10px !important;
-            border: 1px solid #ccc;
-            background: #fff;
-            color: black;
-            border-radius: 5px;
-            outline: none;
-            box-sizing: border-box;
-        }
-
-        .error-message {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
     <div class="wrap">
@@ -97,8 +73,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button><i class='bx bxl-github'></i></button>
                 <button><i class='bx bxl-facebook'></i></button>
             </div>
+
             <p class="register-text">Don't have an account yet? 
-                <a href="/Web/WPL_B2_G6/budget_management/Registration/registration.php">Register for free</a>
+                <a href="../Registration/registration.php">Register for free</a>
             </p>
         </div>
     </div>
