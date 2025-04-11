@@ -311,3 +311,127 @@ header h1 {
 .btns:hover{
     cursor: pointer;
 }
+
+
+
+
+
+.reminderOverlay,
+.editReminderOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    display: none;
+}
+
+
+.addReminderForm,
+.editReminderForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    display: none;
+}
+
+
+
+
+.incomeOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    display: none;
+}
+
+.addIncomeForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;   
+    display: none;
+}
+
+.addIncomeFormCard {
+    background: #333745;
+    padding: 20px;
+    border-radius: 12px;
+    width: 400px; 
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.addIncomeFormCard label {
+    color: white;
+    display: block;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.addIncomeFormCard input {
+    background-color: #505870;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    width: 100%;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.addIncomeFormCard input:focus {
+    outline: 2px solid #fff;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: white;
+}
+
+.submitForm {
+    background-color: #00FF7F;
+    border: none;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.submitForm:hover {
+    background-color: #22da7e;
+}
+
+.editIncomeForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    display: none;
+}
+
+.editIncomeOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    display: none;
+}

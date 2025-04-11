@@ -33,7 +33,7 @@
         </nav>
 
         <ul class="logout">
-            <li><a href="../Login/login.html"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></a>
+            <li><a href="../Login/login.php"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></a>
             </li>
         </ul>
     </div>
@@ -117,7 +117,7 @@
         <div class="addIncomeFormCard">
             <h1>Add New Income</h1>
             <button class="closeBtn" onclick="closeForm()"><i class="fa-solid fa-xmark"></i></button>
-    
+
             <form method="POST" action="add_income.php">
                 <div class="incomeName">
                     <label for="incomeName">Income Name</label>
@@ -139,7 +139,7 @@
             </form>
         </div>
     </div>
-    
+
     <div class="editIncomeOverlay" id="editOverlay"></div>
 
 
@@ -147,10 +147,10 @@
         <div class="addIncomeFormCard">
             <h1>Edit Income</h1>
             <button class="closeBtn" onclick="closeEditForm()"><i class="fa-solid fa-xmark"></i></button>
-    
+
             <form method="POST" action="edit_income.php">
                 <input type="hidden" id="editId" name="income_id">
-    
+
                 <div class="incomeName">
                     <label for="editIncomeName">Income Name</label>
                     <input type="text" id="editIncomeName" name="income_name" required>
@@ -167,15 +167,15 @@
                     <label for="editIncomeCat">Income Category</label>
                     <input type="text" id="editIncomeCat" name="income_category" required>
                 </div>
-    
+
                 <button class="submitForm" type="submit">Save</button>
             </form>
         </div>
     </div>
-    
+
 
     </div>
-    </div>
+    
 
 
     <script src="script.js"></script>
