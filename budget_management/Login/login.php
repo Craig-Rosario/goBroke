@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button><i class='bx bxl-facebook'></i></button>
             </div>
             <p class="register-text">Don't have an account yet? 
-                <a href="/Web/WPL_B2_G6/budget_management/Registration/registration.php">Register for free</a>
+                <a href="WPL_B2_G6/budget_management/Registration/registration.php">Register for free</a>
             </p>
         </div>
     </div>
