@@ -4,7 +4,7 @@
     $password = "";
     $database = "GoBroke";
 
-    $port = 3307; 
+    $port = 4306; 
 
     $conn = new mysqli($server, $username, $password, $database, $port);
 

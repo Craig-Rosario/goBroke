@@ -9,21 +9,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        
+        $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
 
-        $stmt = $conn->prepare("INSERT INTO users (email, username, password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $email, $username, $hashed_password);
-
-        if ($stmt->execute()) {
-            header("Location: ../Dashboard/index.html");
-            exit();
+        if ($stmt->num_rows > 0) {
+            
+            $error = "Email already exists";
         } else {
-            $error = "Error: " . $stmt->error;
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            $stmt = $conn->prepare("INSERT INTO users (email, username, password) VALUES (?, ?, ?)");
+            $stmt->bind_param("sss", $email, $username, $hashed_password);
+
+            if ($stmt->execute()) {
+                header("Location: ../Dashboard/index.html");
+                exit();
+            } else {
+                $error = "Error: " . $stmt->error;
+            }
         }
 
         $stmt->close();
         $conn->close();
     } else {
+        
         $error = "Please fill all the fields.";
     }
 }
@@ -57,7 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" id="password" name="password" placeholder="Password">
                 </div>
                 <?php if (!empty($error)) {
-                    $color = (str_contains($error, "Please fill all")) ? "#FF4C4C" : "#00FF7F";
+                    
+                    $color = (str_contains($error, "Please fill all")) ? "#FF4C4C" : "#FF4C4C"; 
                     echo "<p style='color:$color;'>$error</p>";
                 } ?>
                 <button type="submit" class="register-btn">Sign in</button>

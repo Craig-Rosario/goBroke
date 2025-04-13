@@ -17,7 +17,6 @@ form {
     width: 100%;
 }
 
-
 .wrap {
     height: auto;
     color: white;
@@ -138,27 +137,4 @@ p {
 
 .green {
     color: #00FF7F;
-}
-
-
-.error-message {
-    color: #FF4C4C; 
-    font-size: 14px;
-    margin-top: 10px;
-    padding: 5px;
-    background-color: rgba(255, 76, 76, 0.1);
-    border-radius: 5px;
-    border: 1px solid #FF4C4C;
-    text-align: center;
-}
-
-.success-message {
-    color: #FF4C4C; 
-    font-size: 14px;
-    margin-top: 10px;
-    padding: 5px;
-    background-color: rgba(255, 76, 76, 0.1);
-    border-radius: 5px;
-    border: 1px solid #FF4C4C;
-    text-align: center;
 }
