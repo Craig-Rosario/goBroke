@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="pa">Password</label>
                     <input type="password" id="pa" name="password" placeholder="Password">
                 </div>
-                <a id="fp" href="#">Forgot Password?</a>
+                <a id="fp" href="../Forgot/Forgot.php">Forgot Password?</a>
                 <button type="submit" class="signin-btn">Sign in</button>
             </form>
 
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <p class="register-text">Don't have an account yet? 
 
-                <a href="WPL_B2_G6/budget_management/Registration/registration.php">Register for free</a>
+                <a href="../Registration/registration.php">Register for free</a>
 
             </p>
         </div>
