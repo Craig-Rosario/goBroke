@@ -1,3 +1,79 @@
+<?php
+session_start();
+include("../Registration/database.php");
+
+$error = "";
+
+if (isset($_GET['delete_id'])) {
+    $delete_id = $_GET['delete_id'];
+    $user_id = $_SESSION['user_id']; 
+
+    $stmt = $conn->prepare("DELETE FROM incomes WHERE id = ? AND user_id = ?");
+    $stmt->bind_param("ii", $delete_id, $user_id);
+
+    if ($stmt->execute()) {
+        header("Location: index.php"); 
+        exit();
+    } else {
+        $error = "Error: " . $stmt->error;
+    }
+    $stmt->close();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: ../Login/login.php");
+        exit();
+    }
+
+    $user_id = $_SESSION['user_id']; 
+
+    if (isset($_POST['income_id']) && !empty($_POST['income_id'])) {
+        $income_id = $_POST['income_id'];
+        $income_name = $_POST['income_name'];
+        $income_amount = $_POST['income_amount'];
+        $income_date = $_POST['income_date'];
+        $income_category = $_POST['income_category'];
+
+        if (!empty($income_name) && !empty($income_amount) && !empty($income_date) && !empty($income_category)) {
+            $stmt = $conn->prepare("UPDATE incomes SET income_name = ?, income_amount = ?, income_date = ?, income_category = ? WHERE id = ? AND user_id = ?");
+            $stmt->bind_param("sdssii", $income_name, $income_amount, $income_date, $income_category, $income_id, $user_id);
+
+            if ($stmt->execute()) {
+                header("Location: index.php"); 
+                exit();
+            } else {
+                $error = "Error: " . $stmt->error;
+            }
+            $stmt->close();
+        } else {
+            $error = "Please fill all fields.";
+        }
+    } else {
+        $income_name = $_POST['income_name'];
+        $income_amount = $_POST['income_amount'];
+        $income_date = $_POST['income_date'];
+        $income_category = $_POST['income_category'];
+
+        if (!empty($income_name) && !empty($income_amount) && !empty($income_date) && !empty($income_category)) {
+            $stmt = $conn->prepare("INSERT INTO incomes (user_id, income_name, income_amount, income_date, income_category) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("issds", $user_id, $income_name, $income_amount, $income_date, $income_category);
+
+            if ($stmt->execute()) {
+                header("Location: index.php");
+                exit();
+            } else {
+                $error = "Error: " . $stmt->error;
+            }
+            $stmt->close();
+        } else {
+            $error = "Please fill all fields.";
+        }
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,8 +85,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-
 </head>
 
 <body>
@@ -24,11 +98,11 @@
 
         <nav>
             <ul>
-                <li><a href="../Dashboard/index.html"><i class="fas fa-home"></i> <span>Home</span></a></li>
-                <li><a href="../Income/index.html"><i class="fas fa-wallet"></i> <span>Income Tracker</span></a></li>
-                <li><a href="../Expenses/index.html"><i class="fas fa-chart-line"></i> <span>Expense Tracker</span></a>
+                <li><a href="../Dashboard/index.php"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                <li><a href="../Income/index.php"><i class="fas fa-wallet"></i> <span>Income Tracker</span></a></li>
+                <li><a href="../Expenses/index.php"><i class="fas fa-chart-line"></i> <span>Expense Tracker</span></a>
                 </li>
-                <li><a href="../Reminders/index.html"><i class="fas fa-bell"></i> <span>Reminders</span></a></li>
+                <li><a href="../Reminders/index.php"><i class="fas fa-bell"></i> <span>Reminders</span></a></li>
             </ul>
         </nav>
 
@@ -37,7 +111,6 @@
             </li>
         </ul>
     </div>
-
 
     <div class="mainContainer">
         <header>
@@ -76,49 +149,49 @@
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
-                        <tr>
-                            <td>Salary</td>
-                            <td style="color:#00FF7F">$8000</td>
-                            <td>1/2/25</td>
-                            <td>Job/Employment</td>
-                            <td class="btns" onclick="openEditForm()"><i class="fa-solid fa-file-pen"></i></td>
-                            <td class="btns" style="color: red;"><i class="fa-solid fa-trash"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Salary</td>
-                            <td style="color:#00FF7F">$8000</td>
-                            <td>1/2/25</td>
-                            <td>Job/Employment</td>
-                            <td class="btns"><i class="fa-solid fa-file-pen"></i></td>
-                            <td class="btns" style="color: red;"><i class="fa-solid fa-trash"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Salary</td>
-                            <td style="color:#00FF7F">$8000</td>
-                            <td>1/2/25</td>
-                            <td>Job/Employment</td>
-                            <td class="btns"><i class="fa-solid fa-file-pen"></i></td>
-                            <td class="btns" style="color: red;"><i class="fa-solid fa-trash"></i></td>
-                        </tr>
+                        <?php
+                        $user_id = $_SESSION['user_id']; 
 
+                        $stmt = $conn->prepare("SELECT * FROM incomes WHERE user_id = ?");
+                        $stmt->bind_param("i", $user_id);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        while ($row = $result->fetch_assoc()):
+                        ?>
+                        <tr>
+                            <td><?= $row['income_name'] ?></td>
+                            <td><?= $row['income_amount'] ?></td>
+                            <td><?= $row['income_date'] ?></td>
+                            <td><?= $row['income_category'] ?></td>
+                            <td><a href="javascript:void(0);" class="editBtn" 
+                                data-id="<?= $row['id'] ?>"
+                                data-name="<?= $row['income_name'] ?>"
+                                data-amount="<?= $row['income_amount'] ?>"
+                                data-date="<?= $row['income_date'] ?>"
+                                data-category="<?= $row['income_category'] ?>"
+                                onclick="openEditForm(this)">Edit</a></td>
+
+                            <td><a href="index.php?delete_id=<?= $row['id'] ?>">Delete</a></td>
+                        </tr>
+                        <?php endwhile; ?>
                     </table>
                 </div>
-
             </div>
-
-
         </div>
     </div>
 
     <div class="incomeOverlay" id="incomeOverlay"></div>
-
 
     <div class="addIncomeForm" id="addForm">
         <div class="addIncomeFormCard">
             <h1>Add New Income</h1>
             <button class="closeBtn" onclick="closeForm()"><i class="fa-solid fa-xmark"></i></button>
 
-            <form method="POST" action="add_income.php">
+            <?php if (!empty($error)): ?>
+            <p style="color: red;"><?= $error ?></p>
+            <?php endif; ?>
+
+            <form method="POST" action="index.php">
                 <div class="incomeName">
                     <label for="incomeName">Income Name</label>
                     <input type="text" id="incomeName" name="income_name" placeholder="Income" required>
@@ -142,15 +215,13 @@
 
     <div class="editIncomeOverlay" id="editOverlay"></div>
 
-
     <div class="editIncomeForm" id="editForm">
         <div class="addIncomeFormCard">
             <h1>Edit Income</h1>
             <button class="closeBtn" onclick="closeEditForm()"><i class="fa-solid fa-xmark"></i></button>
 
-            <form method="POST" action="edit_income.php">
-                <input type="hidden" id="editId" name="income_id">
-
+            <form method="POST" action="index.php">
+                <input type="hidden" id="editId" name="income_id"> 
                 <div class="incomeName">
                     <label for="editIncomeName">Income Name</label>
                     <input type="text" id="editIncomeName" name="income_name" required>
@@ -172,10 +243,6 @@
             </form>
         </div>
     </div>
-
-
-    </div>
-    
 
 
     <script src="script.js"></script>

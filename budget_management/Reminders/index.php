@@ -22,10 +22,10 @@
 
         <nav>
             <ul>
-                <li><a href="../Dashboard/index.html"><i class="fas fa-home"></i> <span>Home</span></a></li>
-                <li><a href="../Income/index.html"><i class="fas fa-wallet"></i> <span>Income Tracker</span></a></li>
-                <li><a href="../Expenses/index.html"><i class="fas fa-chart-line"></i> <span>Expense Tracker</span></a></li>
-                <li><a href="../Reminders/index.html"><i class="fas fa-bell"></i> <span>Reminders</span></a></li>
+                <li><a href="../Dashboard/index.php"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                <li><a href="../Income/index.php"><i class="fas fa-wallet"></i> <span>Income Tracker</span></a></li>
+                <li><a href="../Expenses/index.php"><i class="fas fa-chart-line"></i> <span>Expense Tracker</span></a></li>
+                <li><a href="../Reminders/index.php"><i class="fas fa-bell"></i> <span>Reminders</span></a></li>
             </ul>
         </nav>
 

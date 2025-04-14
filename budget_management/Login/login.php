@@ -1,9 +1,10 @@
 <?php
+session_start(); 
 include("../Registration/database.php");
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
+    $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);  
     $password = $_POST["password"];
 
     if (!empty($email) && !empty($password)) {
@@ -15,7 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
             if (password_verify($password, $user['password'])) {
-                header("Location: ../Dashboard/index.html");
+                $_SESSION['user_id'] = $user['id']; 
+                header("Location: ../Dashboard/index.php"); 
                 exit();
             } else {
                 $error = "Invalid email or password.";
@@ -50,11 +52,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form method="POST" action="login.php">
                 <div class="mail">
                     <label for="email">Email</label>
-                    <input type="text" id="email" name="email" placeholder="username@gmail.com">
+                    <input type="text" id="email" name="email" placeholder="username@gmail.com" required>
                 </div>
                 <div class="pass">
                     <label for="pa">Password</label>
-                    <input type="password" id="pa" name="password" placeholder="Password">
+                    <input type="password" id="pa" name="password" placeholder="Password" required>
                 </div>
                 <a id="fp" href="../Forgot/Forgot.php">Forgot Password?</a>
                 <button type="submit" class="signin-btn">Sign in</button>
@@ -75,9 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <p class="register-text">Don't have an account yet? 
-
                 <a href="../Registration/registration.php">Register for free</a>
-
             </p>
         </div>
     </div>

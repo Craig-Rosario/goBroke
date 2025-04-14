@@ -25,3 +25,36 @@ function closeEditReminderForm() {
     document.querySelector('.editReminderForm').style.display = "none";
     document.querySelector('.editReminderOverlay').style.display = "none";
 }
+
+function openForm() {
+    document.getElementById("addForm").style.display = "block";
+    document.getElementById("incomeOverlay").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("addForm").style.display = "none";
+    document.getElementById("incomeOverlay").style.display = "none";
+}
+
+function openEditForm(link) {
+
+    const incomeId = link.getAttribute('data-id');
+    const incomeName = link.getAttribute('data-name');
+    const incomeAmount = link.getAttribute('data-amount');
+    const incomeDate = link.getAttribute('data-date');
+    const incomeCategory = link.getAttribute('data-category');
+
+    document.getElementById('editId').value = incomeId;  
+    document.getElementById('editIncomeName').value = incomeName; 
+    document.getElementById('editIncomeAmt').value = incomeAmount;  
+    document.getElementById('editIncomeDate').value = incomeDate;  
+    document.getElementById('editIncomeCat').value = incomeCategory; 
+
+    document.getElementById('editForm').style.display = 'block';
+    document.getElementById('editOverlay').style.display = 'block';
+}
+
+function closeEditForm() {
+    document.getElementById('editForm').style.display = 'none';
+    document.getElementById('editOverlay').style.display = 'none';
+}
