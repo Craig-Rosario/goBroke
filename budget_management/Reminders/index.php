@@ -21,7 +21,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_reminder'])) {
     $name = $_POST['reminder_name'];
     $amount = $_POST['reminder_amount'];
@@ -35,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_reminder'])) {
     header("Location: index.php");
     exit();
 }
-
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_reminder'])) {
     $id = $_POST['reminder_id'];
@@ -51,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_reminder'])) {
     header("Location: index.php");
     exit();
 }
-
 
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
@@ -85,28 +82,61 @@ $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER B
     </ul>
 </div>
 
-
-
 <div class="mainContainer">
     <header>
         <h1>Reminders</h1>
     </header>
     <div class="income">
-            <div class="totalIncome">
-                <h3>Upcoming Bills</h3>
-                <div class="incomeCard">
-                    <canvas id="goalChart"></canvas>
-                    <p class="income-amount">₹5,432,000</p>
-                </div>
+        <div class="totalIncome">
+            <h3>Upcoming Bills</h3>
+            <div class="incomeCard">
+                <ul style="list-style-type: none; padding-left: 0; font-size: 16px;">
+                    <?php
+                    // Show top 5 upcoming reminders with images
+                    $upcoming = $conn->query("SELECT reminder_name, reminder_date, reminder_category FROM reminders WHERE user_id = $user_id AND reminder_date >= CURDATE() ORDER BY reminder_date ASC LIMIT 5");
+                    if ($upcoming->num_rows > 0):
+                        while ($row = $upcoming->fetch_assoc()):
+                            // Determine the image based on the category
+                            $image = '';
+                            switch (strtolower($row['reminder_category'])) {
+                                case 'electricity':
+                                    $image = 'electricity.png'; // Replace with your image path
+                                    break;
+                                case 'internet':
+                                    $image = 'internet.png'; // Replace with your image path
+                                    break;
+                                case 'credit card':
+                                    $image = 'credit_card.png'; // Replace with your image path
+                                    break;
+                                case 'stationary':
+                                    $image = 'stationary.png'; // Replace with your image path
+                                    break;
+                                case 'books':
+                                    $image = 'books.png'; // Replace with your image path
+                                    break;
+                                default:
+                                    $image = 'default.png'; // Replace with a default image path
+                                    break;
+                            }
+                    ?>
+                            <li>
+                                <img src="<?= $image ?>" alt="<?= htmlspecialchars($row['reminder_category']) ?>">
+                                <span><?= htmlspecialchars($row['reminder_name']) ?> - <?= $row['reminder_date'] ?></span>
+                            </li>
+                    <?php endwhile; else: ?>
+                        <li>No upcoming bills</li>
+                    <?php endif; ?>
+                </ul>
             </div>
+        </div>
 
-            <div class="incomeChart">
-                <h3>Reminder Receipt</h3>
-                <div class="incomeCard">
-                    <canvas id="goalChart2"></canvas>
-                    <p class="income-amount">₹5,432,000</p>
-                </div>
+        <div class="incomeChart">
+            <h3>Reminder Receipt</h3>
+            <div class="incomeCard">
+                <canvas id="goalChart2"></canvas>
+                <p class="income-amount">₹5,432,000</p>
             </div>
+        </div>
     </div>
 
     <div class="analytics">
@@ -144,12 +174,7 @@ $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER B
             </div>
         </div>
     </div>
-    
 
-        
-
-        
-    
     <div class="reminderOverlay" id="reminderOverlay"></div>
     <div class="addReminderForm" id="addReminderForm">
         <div class="addIncomeFormCard">
@@ -174,7 +199,6 @@ $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER B
         </div>
     </div>
 
-    
     <div class="editReminderOverlay" id="editReminderOverlay"></div>
     <div class="editReminderForm" id="editReminderForm">
         <div class="addIncomeFormCard">
