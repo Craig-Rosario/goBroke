@@ -100,22 +100,22 @@ $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER B
                             $image = '';
                             switch (strtolower($row['reminder_category'])) {
                                 case 'electricity':
-                                    $image = 'electricity.png'; // Replace with your image path
+                                    $image = 'electricity.png'; 
                                     break;
                                 case 'internet':
-                                    $image = 'internet.png'; // Replace with your image path
+                                    $image = 'internet.png'; 
                                     break;
                                 case 'credit card':
-                                    $image = 'credit_card.png'; // Replace with your image path
+                                    $image = 'credit_card.png'; 
                                     break;
                                 case 'stationary':
-                                    $image = 'stationary.png'; // Replace with your image path
+                                    $image = 'stationary.png'; 
                                     break;
                                 case 'books':
-                                    $image = 'books.png'; // Replace with your image path
+                                    $image = 'books.png'; 
                                     break;
                                 default:
-                                    $image = 'default.png'; // Replace with a default image path
+                                    $image = 'default.png'; 
                                     break;
                             }
                     ?>
