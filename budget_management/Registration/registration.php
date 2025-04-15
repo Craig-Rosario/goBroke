@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button class="github-btn"><i class="fab fa-github"></i></button>
                 <button class="facebook-btn"><i class="fab fa-facebook-f"></i></button>
             </div>
-            <p>Already have an account? <a href="../Login/login.php" style="color:#00FF7F; text-decoration:none;">Log in</a></p>
+            <p>Already have an account? <a href="../Login/login.php" style="color:lightblue; text-decoration:none;">Log in</a></p>
         </div>
     </div>
 </body>
