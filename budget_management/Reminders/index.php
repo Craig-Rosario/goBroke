@@ -159,11 +159,11 @@ $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER B
                         <td><?= $row['reminder_date'] ?></td>
                         <td><?= htmlspecialchars($row['reminder_category']) ?></td>
                         <td class="btns">
-                            <i class="fa-solid fa-file-pen" onclick='openEditReminderForm(<?= json_encode($row) ?>)'></i>
+                            <i style="color:white;" class="fa-solid fa-pen-to-square" onclick='openEditReminderForm(<?= json_encode($row) ?>)'></i>
                         </td>
                         <td class="btns" style="color: red;">
                             <a href="?delete=<?= $row['id'] ?>" onclick="return confirm('Are you sure?')">
-                                <i class="fa-solid fa-trash"></i>
+                                <i style="color:#FF4C4C" class="fa-solid fa-trash"></i>
                             </a>
                         </td>
                     </tr>
@@ -192,7 +192,7 @@ $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER B
                 <label>Category
                     <input type="text" name="reminder_category" required>
                 </label>
-                <button type="submit">Submit</button>
+                <button class="submitBtn" type="submit">Submit</button>
             </form>
         </div>
     </div>
@@ -217,7 +217,7 @@ $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER B
                 <label>Category
                     <input type="text" id="editReminderCat" name="reminder_category" required>
                 </label>
-                <button type="submit">Save</button>
+                <button class="saveBtn" type="submit">Save</button>
             </form>
         </div>
     </div>

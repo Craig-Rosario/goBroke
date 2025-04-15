@@ -75,7 +75,13 @@ body {
     display: inline;
 }
 
-
+.saveBtn,.submitBtn{
+    background-color: #00FF7F;
+    border: none;
+    padding:5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
 
 
 .toggleButton {

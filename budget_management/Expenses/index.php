@@ -178,9 +178,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 data-amount="<?= $row['expense_amount'] ?>"
                                 data-date="<?= $row['expense_date'] ?>"
                                 data-category="<?= $row['expense_category'] ?>"
-                                onclick="openEditForm(this)">Edit</a></td>
+                                onclick="openEditForm(this)"><i style="color:white;" class="fa-solid fa-pen-to-square"></i></a></td>
 
-                            <td><a href="index.php?delete_id=<?= $row['id'] ?>" style="color: red;"><i class="fa-solid fa-trash"></i></a></td>
+                            <td><a href="index.php?delete_id=<?= $row['id'] ?>" style="color:#FF4C4C;"><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
                         <?php endwhile; ?>
                     </table>
