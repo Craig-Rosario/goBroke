@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <button type="submit" class="register-btn">Reset Password</button>
             </form>
-            <p>Remember your password? <a href="../Login/login.php" style="color:#00FF7F; text-decoration:none;">Login here</a></p>
+            <p>Remember your password? <a href="../Login/login.php" style="color:lightblue; text-decoration:none;">Login here</a></p>
         </div>
     </div>
 </body>
