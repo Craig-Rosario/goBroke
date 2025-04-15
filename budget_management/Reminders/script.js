@@ -7,21 +7,26 @@ function toggleSideBar() {
 }
 
 function openReminderForm() {
-    document.querySelector('.addReminderForm').style.display = "block";
-    document.querySelector('.reminderOverlay').style.display = "block";
+    document.getElementById('reminderOverlay').style.display = 'block';
+    document.getElementById('addReminderForm').style.display = 'block';
 }
 
 function closeReminderForm() {
-    document.querySelector('.addReminderForm').style.display = "none";
-    document.querySelector('.reminderOverlay').style.display = "none";
+    document.getElementById('reminderOverlay').style.display = 'none';
+    document.getElementById('addReminderForm').style.display = 'none';
 }
 
-function openEditReminderForm() {
-    document.querySelector('.editReminderForm').style.display = "block";
-    document.querySelector('.editReminderOverlay').style.display = "block";
+function openEditReminderForm(data) {
+    document.getElementById('editReminderOverlay').style.display = 'block';
+    document.getElementById('editReminderForm').style.display = 'block';
+    document.getElementById('editReminderId').value = data.id;
+    document.getElementById('editReminderName').value = data.reminder_name;
+    document.getElementById('editReminderAmt').value = data.reminder_amount;
+    document.getElementById('editReminderDate').value = data.reminder_date;
+    document.getElementById('editReminderCat').value = data.reminder_category;
 }
 
 function closeEditReminderForm() {
-    document.querySelector('.editReminderForm').style.display = "none";
-    document.querySelector('.editReminderOverlay').style.display = "none";
+    document.getElementById('editReminderOverlay').style.display = 'none';
+    document.getElementById('editReminderForm').style.display = 'none';
 }

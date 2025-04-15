@@ -92,11 +92,9 @@ $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER B
             <div class="incomeCard">
                 <ul style="list-style-type: none; padding-left: 0; font-size: 16px;">
                     <?php
-                    // Show top 5 upcoming reminders with images
                     $upcoming = $conn->query("SELECT reminder_name, reminder_date, reminder_category FROM reminders WHERE user_id = $user_id AND reminder_date >= CURDATE() ORDER BY reminder_date ASC LIMIT 5");
                     if ($upcoming->num_rows > 0):
                         while ($row = $upcoming->fetch_assoc()):
-                            // Determine the image based on the category
                             $image = '';
                             switch (strtolower($row['reminder_category'])) {
                                 case 'electricity':
@@ -225,32 +223,8 @@ $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER B
     </div>
 </div>
 
-<script>
-function openReminderForm() {
-    document.getElementById('reminderOverlay').style.display = 'block';
-    document.getElementById('addReminderForm').style.display = 'block';
-}
 
-function closeReminderForm() {
-    document.getElementById('reminderOverlay').style.display = 'none';
-    document.getElementById('addReminderForm').style.display = 'none';
-}
-
-function openEditReminderForm(data) {
-    document.getElementById('editReminderOverlay').style.display = 'block';
-    document.getElementById('editReminderForm').style.display = 'block';
-    document.getElementById('editReminderId').value = data.id;
-    document.getElementById('editReminderName').value = data.reminder_name;
-    document.getElementById('editReminderAmt').value = data.reminder_amount;
-    document.getElementById('editReminderDate').value = data.reminder_date;
-    document.getElementById('editReminderCat').value = data.reminder_category;
-}
-
-function closeEditReminderForm() {
-    document.getElementById('editReminderOverlay').style.display = 'none';
-    document.getElementById('editReminderForm').style.display = 'none';
-}
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>

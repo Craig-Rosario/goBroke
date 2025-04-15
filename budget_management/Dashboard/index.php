@@ -7,15 +7,12 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-
 </head>
 <body>
     <div class="sideBar">
         <div class="sideBarTitle">
             <h2><span class="fullText"><span class="red">Go</span><span class="green">Broke</span></span></h2>
             <h3><span class="shortText"><span class="red">g</span><span class="green">B</span></span></h3>
-            
             <button class="toggleButton" onclick="toggleSideBar()"><i class="fa-solid fa-bars"></i></button>
         </div>
     
@@ -40,12 +37,10 @@
             <p>Welcome back, Craig</p> 
         </header>
 
-        <div class="totalSavings">
-            <h3>Total Savings</h3>
-            <div class="savingsCard">
-                <canvas id="goalChart"></canvas>
-                <p class="savings-amount">₹5,432,000</p>
-            </div>
+        <div class="savingsCard">
+            <canvas id="goalChart"></canvas>
+           
+            <div class="chartText" id="chartText">₹0.00</div> 
         </div>
 
         <div class="analytics">
@@ -55,7 +50,6 @@
                     <p class="income">₹89,000.70</p>
                     <canvas id="incomeChart"></canvas>
                 </div>
-
             </div>
             <div class="expenseCard">
                 <h4>Expenses</h4>
@@ -63,7 +57,6 @@
                     <p class="expenses">₹42,000.30</p>
                     <canvas id="expenseChart"></canvas>
                 </div>
-
             </div>
             <div class="remindersCard">
                 <h4>Reminders</h4>
@@ -76,12 +69,13 @@
                         <li>Book Supplies - ₹899</li>
                     </ul>
                 </div>
-
             </div>
         </div>
     </div>
 
-    
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="charts.js"></script> 
+
 </body>
 </html>

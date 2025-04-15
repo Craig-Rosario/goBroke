@@ -192,13 +192,24 @@ header p {
     background-color: #495064;
     padding: 20px;
     border-radius: 10px;
-    height: 350px;
+    height: 500px;
     text-align: center;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+.savingsCard canvas {
+    width: 600px;  
+    height: 600px;
+}
+
+.goalChart {
+    width: 600px;  
+    height: 600px; 
+}
+
 
 .savings-amount {
     font-size: 24px;
@@ -208,6 +219,20 @@ header p {
     top: 50%;
     transform: translateY(-50%);
 }
+
+
+.chartText {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #FFD700;  
+    text-align: center;
+    white-space: nowrap;
+}
+
 
 .analytics {
     display: flex;

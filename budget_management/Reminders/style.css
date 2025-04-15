@@ -435,7 +435,6 @@ header h1 {
     z-index: 99;
     display: none;
 }
-/* ... other CSS styles ... */
 
 .totalIncome {
     margin: 35px 35px 35px 0;
@@ -453,12 +452,12 @@ header h1 {
     background-color: #495064;
     padding: 20px;
     border-radius: 10px;
-    height: auto; /* Adjust height to fit content */
-    text-align: left; /* Align text to the left */
+    height: auto; 
+    text-align: left; 
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: stretch; /* Stretch items to fill the container */
+    align-items: stretch; 
 }
 
 .incomeCard ul {
@@ -471,18 +470,18 @@ header h1 {
     display: flex;
     align-items: center;
     padding: 10px 0;
-    border-bottom: 1px solid #505870; /* Add a separator between items */
+    border-bottom: 1px solid #505870; 
 }
 
 .incomeCard li:last-child {
-    border-bottom: none; /* Remove border from the last item */
+    border-bottom: none; 
 }
 
 .incomeCard li img {
-    width: 30px; /* Adjust image size as needed */
+    width: 30px; 
     height: 30px;
     margin-right: 15px;
-    border-radius: 50%; /* Make the image circular */
+    border-radius: 50%; 
 }
 
 .incomeCard li span {

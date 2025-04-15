@@ -123,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h1>Expense Tracker</h1>
         </header>
 
-        <div class="income"> <!-- Consider renaming this class to "expenses" if you want cleaner structure -->
+        <div class="income"> 
             <div class="totalIncome">
                 <h3>Total Expenses</h3>
                 <div class="incomeCard">
