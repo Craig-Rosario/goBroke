@@ -219,6 +219,41 @@ header h1 {
     align-items: center;
 }
 
+.incomAmount {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #FF4C4C;
+    text-align: center;
+    word-break: break-word;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chartWrapper {
+    position: relative;
+    width: 320px; 
+    height: 320px; 
+}
+
+.chartWrapper canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+
+.chartText {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #FF4C4C;
+    text-align: center;
+    white-space: nowrap;
+}
 
 
 .analytics {
