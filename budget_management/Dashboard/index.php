@@ -15,7 +15,7 @@
             <h3><span class="shortText"><span class="red">g</span><span class="green">B</span></span></h3>
             <button class="toggleButton" onclick="toggleSideBar()"><i class="fa-solid fa-bars"></i></button>
         </div>
-    
+
         <nav>
             <ul>
                 <li><a href="../Dashboard/index.php"><i class="fas fa-home"></i> <span>Home</span></a></li>
@@ -24,23 +24,23 @@
                 <li><a href="../Reminders/index.php"><i class="fas fa-bell"></i> <span>Reminders</span></a></li>
             </ul>
         </nav>
-    
+
         <ul class="logout">
             <li><a href="../Login/login.php"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></a></li>
         </ul>
     </div>
-    
+
 
     <div class="mainContainer">
         <header>
             <h1>Dashboard</h1>
-            <p>Welcome back, Craig</p> 
+            <p>Welcome back, Craig</p>
         </header>
 
         <div class="savingsCard">
             <canvas id="goalChart"></canvas>
-           
-            <div class="chartText" id="chartText">₹0.00</div> 
+
+            <div class="chartText" id="chartText">₹0.00</div>
         </div>
 
         <div class="analytics">
@@ -62,11 +62,30 @@
                 <h4>Reminders</h4>
                 <div class="reminders">
                     <ul class="remindersList">
-                        <li>Electricity Bill - ₹2,100</li>
-                        <li>Internet Subscription - ₹5,000</li>
-                        <li>Credit Card Payment - ₹17,000</li>
-                        <li>Stationary Supplies - ₹2,199</li>
-                        <li>Book Supplies - ₹899</li>
+                        <?php
+                        session_start();
+                        $user_id = $_SESSION['user_id'] ?? 1;
+
+                        include("../Registration/database.php");
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+
+                        $upcomingReminders = $conn->query("SELECT reminder_name, reminder_amount FROM reminders WHERE user_id = $user_id ORDER BY reminder_date ASC LIMIT 5");
+
+                        if ($upcomingReminders->num_rows > 0):
+                            while ($row = $upcomingReminders->fetch_assoc()):
+                        ?>
+                                <li><?= htmlspecialchars($row['reminder_name']) ?> - ₹<?= number_format($row['reminder_amount']) ?></li>
+                        <?php
+                            endwhile;
+                        else:
+                        ?>
+                            <li>No upcoming reminders</li>
+                        <?php endif;
+
+                        $conn->close();
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -75,7 +94,7 @@
 
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="charts.js"></script> 
+    <script src="charts.js"></script>
 
 </body>
 </html>
