@@ -1,3 +1,5 @@
+/* style.css */
+
 * {
     margin: 0;
     padding: 0;
@@ -7,18 +9,17 @@
 
 body {
     display: flex;
-    min-height: 100vh;  
+    min-height: 100vh;
     background-color: #282C37;
     color: #fff;
 }
 
-
 .sideBar {
     display: flex;
-    flex-direction: column;  
-    min-height: 100vh;  
-    position: fixed;         
-    width: 250px;  
+    flex-direction: column;
+    min-height: 100vh;
+    position: fixed;
+    width: 250px;
     background-color: #1E212B;
     padding: 20px;
     transition: transform 0.3s ease, width 0.3s ease;
@@ -27,12 +28,10 @@ body {
 }
 
 .sideBar.collapsed {
-    width: 60px;  
+    width: 60px;
     padding: 20px 10px;
-    transform: translateX(0); 
+    transform: translateX(0);
 }
-
-
 
 .sideBar h2 {
     transition: opacity 0.3s ease;
@@ -47,7 +46,7 @@ body {
     transition: 0.3s;
 }
 
-.sideBarTitle h3{
+.sideBarTitle h3 {
     margin-left: 5px;
     margin-bottom: 10px;
 }
@@ -66,7 +65,6 @@ body {
     margin: 15px 0;
 }
 
-
 .sideBar.collapsed .fullText {
     display: none;
 }
@@ -75,30 +73,26 @@ body {
     display: inline;
 }
 
-
-
-
 .toggleButton {
     background: transparent;
     border: none;
-    color: #fff;                  
-    font-size: 24px;              
-    cursor: pointer;              
-    transition: 0.3s;             
-    padding: 5px;                
-    border-radius: 5px;     
-    margin-left: 8px;      
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 8px;
 }
 
 .toggleButton:hover {
-    background: #495064;          
+    background: #495064;
 }
 
 .sideBar nav ul li a {
     text-decoration: none;
-    color: inherit; 
+    color: inherit;
 }
-
 
 .sideBar nav ul, .sideBar .logout {
     list-style: none;
@@ -114,56 +108,48 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
-    white-space: nowrap;   
-    overflow: hidden;      
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-
 .sideBar ul li i {
-    font-size: 22px;   
+    font-size: 22px;
     transition: color 0.3s;
 }
 
-
 .sideBar.collapsed nav ul li span,
 .sideBar.collapsed .logout li span {
-    display: none;       
+    display: none;
 }
-
 
 .sideBar.collapsed nav ul li i,
 .sideBar.collapsed .logout li i {
-    font-size: 24px;      
-    margin: 0 auto;       
+    font-size: 24px;
+    margin: 0 auto;
     transition: 0.3s;
 }
-
 
 .sideBar nav ul li:hover, .sideBar .logout li:hover {
     background-color: #495064;
 }
-
-
-
 
 .logout {
     margin-top: auto;
 }
 
-.logout li a{
+.logout li a {
     text-decoration: none;
-    color: inherit; 
+    color: inherit;
 }
 
 .sideBar nav ul li:hover, .sideBar .logout li:hover {
     background-color: #495064;
 }
 
-
 .mainContainer {
     flex: 1;
     margin-left: 250px;
-    overflow-y: auto; 
+    overflow-y: auto;
     padding: 20px;
     transition: margin-left 0.3s ease;
 }
@@ -176,35 +162,33 @@ body {
 
 header h1 {
     font-size: 30px;
+    color: #00FF7F; /* Income header color */
 }
 
-
-.income{
+.income {
     display: flex;
     flex-direction: row;
-    
 }
 
-
-.totalIncome{
+.totalIncome {
     margin: 35px 35px 35px 0;
     font-size: 22px;
     width: 60%;
 }
-.totalIncome h3{
+
+.totalIncome h3 {
     color: white;
 }
 
-.incomeChart{
+.incomeChart {
     margin: 35px;
     font-size: 22px;
     width: 60%;
 }
 
-.incomeChart h3{
+.incomeChart h3 {
     color: white;
 }
-
 
 .incomeCard {
     margin-top: 20px;
@@ -217,14 +201,12 @@ header h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    overflow: hidden;
 }
 
 .incomAmount {
     font-size: 1.6rem;
     font-weight: 600;
-    color: #00FF7F;
+    color: #00FF7F; /* Income amount color */
     text-align: center;
     word-break: break-word;
     max-width: 100%;
@@ -235,15 +217,14 @@ header h1 {
 
 .chartWrapper {
     position: relative;
-    width: 320px; 
-    height: 320px; 
+    width: 320px;
+    height: 320px;
 }
 
 .chartWrapper canvas {
     width: 100% !important;
     height: 100% !important;
 }
-
 
 .chartText {
     position: absolute;
@@ -252,12 +233,10 @@ header h1 {
     transform: translate(-50%, -25%);
     font-size: 1.6rem;
     font-weight: 600;
-    color: #00FF7F;
+    color: #00FF7F; /* Income chart text color */
     text-align: center;
     white-space: nowrap;
 }
-
-
 
 .analytics {
     display: flex;
@@ -268,11 +247,11 @@ header h1 {
     width: 95%;
 }
 
-.analytics h3{
+.analytics h3 {
     font-size: 22px;
 }
 
-.addBtn{
+.addBtn {
     background-color: #1E212B;
     border: none;
     color: white;
@@ -282,7 +261,7 @@ header h1 {
     font-size: 15px;
 }
 
-.addBtn:hover{
+.addBtn:hover {
     background-color: #495064;
 }
 
@@ -290,7 +269,6 @@ header h1 {
     background-color: #1E212B;
     padding: 20px;
     border-radius: 10px;
-    
     width: 100%;
 }
 
@@ -336,17 +314,15 @@ header h1 {
 }
 
 .tableCard td:nth-child(2) {
-    color: #00FF7F;
+    color: #00FF7F; /* Income amount in table */
     font-weight: bold;
 }
 
-.btns:hover{
+.btns:hover {
     cursor: pointer;
 }
 
-
-
-.incomeOverlay {
+.overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -354,35 +330,37 @@ header h1 {
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: 99;
-    display: none;
 }
 
-.addIncomeForm {
+.addForm {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 100;   
+    z-index: 100;
+}
+
+.addForm, .overlay {
     display: none;
 }
 
-.addIncomeFormCard {
-    background: #1e1e1e;
+.addFormCard {
+    background: #333745;
     padding: 20px;
     border-radius: 12px;
-    width: 400px; 
+    width: 400px;
     position: relative;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.addIncomeFormCard label {
+.addFormCard label {
     color: white;
     display: block;
     margin-bottom: 5px;
     margin-top: 5px;
 }
 
-.addIncomeFormCard input {
+.addFormCard input {
     background-color: #505870;
     color: white;
     border: none;
@@ -393,7 +371,7 @@ header h1 {
     outline: none;
 }
 
-.addIncomeFormCard input:focus {
+.addFormCard input:focus {
     outline: 2px solid #fff;
 }
 
@@ -409,7 +387,7 @@ header h1 {
 }
 
 .submitForm {
-    background-color: #00FF7F;
+    background-color: #00FF7F; /* Income submit button */
     border: none;
     padding: 5px;
     border-radius: 10px;
@@ -420,7 +398,7 @@ header h1 {
     background-color: #22da7e;
 }
 
-.editIncomeForm {
+.editForm {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -429,7 +407,7 @@ header h1 {
     display: none;
 }
 
-.editIncomeOverlay {
+.editOverlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -440,42 +418,44 @@ header h1 {
     display: none;
 }
 
-/* Overlay for the form */
+/* Overlay for the goal form */
 .goalOverlay {
-    display: none; 
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay for better visibility */
+    background-color: rgba(0, 0, 0, 0.7);
     z-index: 999;
 }
 
-/* Form container */
+/* Goal form container */
 .addGoalForm {
-    display: none; 
+    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centering the form */
-    color: #00FF7F; /* Green text color */
+    transform: translate(-50%, -50%);
+    background-color: #1e1e1e;
+    color: #fff;
     border-radius: 15px;
     padding: 30px;
     width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 1000;
-    animation: formSlideIn 0.3s ease-out; /* Animation for showing the form */
+    animation: formSlideIn 0.3s ease-out;
 }
 
-/* Title Styling */
+/* Goal form Title Styling */
 .addGoalForm h1 {
     text-align: center;
     font-size: 24px;
-    color: #00FF7F; /* Green */
+    color: #00FF7F; /* Income goal title color */
     margin-bottom: 20px;
 }
 
-/* Close Button */
+/* Goal form Close Button */
 .addGoalForm .closeBtn {
     position: absolute;
     top: 10px;
@@ -484,26 +464,25 @@ header h1 {
     border: none;
     font-size: 25px;
     cursor: pointer;
-    color: #00FF7F; /* Green */
+    color: #00FF7F; /* Income goal close button color */
     transition: color 0.3s ease;
 }
 
 .addGoalForm .closeBtn:hover {
-    color: #00CC66; /* Slightly darker green for hover */
+    color: #00C957; /* Darker green for hover */
 }
 
-/* Form fields */
+/* Goal form fields */
 .addGoalForm label {
     font-size: 16px;
     margin-bottom: 10px;
     display: block;
-    color: #00FF7F; /* Green */
 }
 
 .addGoalForm input {
     width: 100%;
     padding: 15px;
-    background-color: #333; /* Dark background for input fields */
+    background-color: #333;
     border: 1px solid #444;
     border-radius: 10px;
     margin-bottom: 20px;
@@ -512,15 +491,15 @@ header h1 {
 }
 
 .addGoalForm input:focus {
-    border-color: #00FF7F; /* Green border on focus */
+    border-color: #00FF7F; /* Income goal focus color */
     outline: none;
 }
 
-/* Submit Button */
+/* Goal form Submit Button */
 .addGoalForm button.submitForm {
     width: 100%;
     padding: 15px;
-    background-color: #00FF7F; /* Green */
+    background-color: #00FF7F; /* Income goal submit button */
     color: white;
     border: none;
     border-radius: 10px;
@@ -530,7 +509,7 @@ header h1 {
 }
 
 .addGoalForm button.submitForm:hover {
-    background-color: #00CC66; /* Slightly darker green for hover */
+    background-color: #00C957; /* Darker green for hover */
 }
 
 /* Form Slide-in Animation */

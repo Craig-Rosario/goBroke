@@ -4,7 +4,6 @@ include("../Registration/database.php");
 
 $error = "";
 
-// Ensure the user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../Login/login.php");
     exit();
@@ -12,7 +11,6 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// DELETE Expense
 if (isset($_GET['delete_id']) && is_numeric($_GET['delete_id'])) {
     $delete_id = (int) $_GET['delete_id'];
 
@@ -20,9 +18,7 @@ if (isset($_GET['delete_id']) && is_numeric($_GET['delete_id'])) {
     $stmt->bind_param("ii", $delete_id, $user_id);
 
     if ($stmt->execute()) {
-        // Optional: calculate total expense if you use it in frontend
         $totalExpense = $conn->query("SELECT SUM(expense_amount) AS total FROM expenses WHERE user_id = $user_id")->fetch_assoc()['total'] ?? 0;
-
         echo "<script>const totalExpense = " . json_encode($totalExpense) . ";</script>";
         header("Location: index.php");
         exit();
@@ -32,7 +28,6 @@ if (isset($_GET['delete_id']) && is_numeric($_GET['delete_id'])) {
     $stmt->close();
 }
 
-// Fetch expense limit (if any) for the user
 $stmt = $conn->prepare("SELECT expense_limit FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -40,23 +35,20 @@ $stmt->bind_result($expense_limit);
 $stmt->fetch();
 $stmt->close();
 
-// INSERT or UPDATE Expense
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $expense_name = trim($_POST['expense_name'] ?? '');
     $expense_amount = floatval($_POST['expense_amount'] ?? 0);
     $expense_date = $_POST['expense_date'] ?? '';
     $expense_category = trim($_POST['expense_category'] ?? '');
 
-    // Handle expense limit update if provided
     if (isset($_POST['expense_limit'])) {
         $new_expense_limit = floatval($_POST['expense_limit']);
-        
+
         if ($new_expense_limit >= 0) {
             $stmt = $conn->prepare("UPDATE users SET expense_limit = ? WHERE id = ?");
             $stmt->bind_param("di", $new_expense_limit, $user_id);
 
             if ($stmt->execute()) {
-                // Optionally update the page or redirect
                 header("Location: index.php?success=Expense limit updated successfully");
                 exit();
             } else {
@@ -68,10 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    // Handle adding or updating expenses
     if ($expense_name && $expense_amount && $expense_date && $expense_category) {
         if (!empty($_POST['expense_id'])) {
-            // UPDATE existing expense
             $expense_id = (int) $_POST['expense_id'];
 
             $stmt = $conn->prepare("UPDATE expenses SET expense_name = ?, expense_amount = ?, expense_date = ?, expense_category = ? WHERE id = ? AND user_id = ?");
@@ -85,7 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
             $stmt->close();
         } else {
-            // INSERT new expense
             $stmt = $conn->prepare("INSERT INTO expenses (user_id, expense_name, expense_amount, expense_date, expense_category) VALUES (?, ?, ?, ?, ?)");
             $stmt->bind_param("isdss", $user_id, $expense_name, $expense_amount, $expense_date, $expense_category);
 
@@ -102,14 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 ?>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,19 +101,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-
 </head>
-
 <body>
     <div class="sideBar">
         <div class="sideBarTitle">
             <h2><span class="fullText"><span class="red">Go</span><span class="green">Broke</span></span></h2>
             <h3><span class="shortText"><span class="red">g</span><span class="green">B</span></span></h3>
-
             <button class="toggleButton" onclick="toggleSideBar()"><i class="fa-solid fa-bars"></i></button>
         </div>
-
         <nav>
             <ul>
                 <li><a href="../Dashboard/index.php"><i class="fas fa-home"></i> <span>Home</span></a></li>
@@ -140,20 +118,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <li><a href="../Reminders/index.php"><i class="fas fa-bell"></i> <span>Reminders</span></a></li>
             </ul>
         </nav>
-
         <ul class="logout">
             <li><a href="../Login/login.php"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></a>
             </li>
         </ul>
     </div>
-
-
     <div class="mainContainer">
         <header>
             <h1>Expense Tracker</h1>
         </header>
-
-        <div class="income"> 
+        <div class="income">
             <div class="totalIncome">
                 <h3>Total Expenses</h3>
                 <div class="incomeCard">
@@ -163,18 +137,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </div>
                 </div>
             </div>
-
             <div class="incomeChart">
-                <h3>Expenses Chart</h3>
+                <h3>Expense Distribution</h3>
                 <div class="incomeCard">
-                    <canvas id="goalChart4"></canvas>
-                    <p class="expense-amount">₹0</p>
+                    <canvas id="expenseCategoryChart"></canvas>
                 </div>
             </div>
         </div>
         <button class="addBtn" onclick="openExpenseLimitForm()"><i class="fa-solid fa-bullseye"></i> Set Expense Limit</button>
-
-        
         <div class="analytics">
             <h3>All Expenses</h3>
             <button class="addBtn" onclick="openForm()"><i class="fa-solid fa-plus"></i>Add</button>
@@ -190,8 +160,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <th>Delete</th>
                         </tr>
                         <?php
-                        $user_id = $_SESSION['user_id']; 
-
                         $stmt = $conn->prepare("SELECT * FROM expenses WHERE user_id = ?");
                         $stmt->bind_param("i", $user_id);
                         $stmt->execute();
@@ -203,14 +171,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <td style="color:#FF4C4C"><?= $row['expense_amount'] ?></td>
                             <td><?= $row['expense_date'] ?></td>
                             <td><?= $row['expense_category'] ?></td>
-                            <td><a href="javascript:void(0);" class="editBtn" 
-                                data-id="<?= $row['id'] ?>"
-                                data-name="<?= $row['expense_name'] ?>"
-                                data-amount="<?= $row['expense_amount'] ?>"
-                                data-date="<?= $row['expense_date'] ?>"
-                                data-category="<?= $row['expense_category'] ?>"
-                                onclick="openEditForm(this)"><i style="color:white;" class="fa-solid fa-pen-to-square"></i></a></td>
-
+                            <td><a href="javascript:void(0);" class="editBtn"
+                                   data-id="<?= $row['id'] ?>"
+                                   data-name="<?= $row['expense_name'] ?>"
+                                   data-amount="<?= $row['expense_amount'] ?>"
+                                   data-date="<?= $row['expense_date'] ?>"
+                                   data-category="<?= $row['expense_category'] ?>"
+                                   onclick="openEditForm(this)"><i style="color:white;" class="fa-solid fa-pen-to-square"></i></a></td>
                             <td><a href="index.php?delete_id=<?= $row['id'] ?>" style="color:#FF4C4C;"><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
                         <?php endwhile; ?>
@@ -218,20 +185,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </div>
             </div>
         </div>
-
-        </div>
-
-        <div class="overlay" id="overlay"></div>
-
-        <div class="addForm" id="addForm">
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <div class="addForm" id="addForm">
         <div class="addFormCard">
             <h1>Add New Expense</h1>
             <button class="closeBtn" onclick="closeForm()"><i class="fa-solid fa-xmark"></i></button>
-
             <?php if (!empty($error)): ?>
             <p style="color: red;"><?= $error ?></p>
             <?php endif; ?>
-
             <form method="POST" action="index.php">
                 <div class="expName">
                     <label for="expName">Expense Name</label>
@@ -253,18 +215,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </form>
         </div>
     </div>
-
-
-
-        <div class="editOverlay" id="editOverlay"></div>
-        <div class="editForm" id="editForm">
+    <div class="editOverlay" id="editOverlay"></div>
+    <div class="editForm" id="editForm">
         <div class="addFormCard">
             <h1>Edit Expense</h1>
             <button class="closeBtn" onclick="closeEditForm()"><i class="fa-solid fa-xmark"></i></button>
-
             <form method="POST" action="index.php">
                 <input type="hidden" id="editId" name="expense_id">
-
                 <div class="expName">
                     <label for="editExpName">Expense Name</label>
                     <input type="text" id="editExpName" name="expense_name" required>
@@ -281,15 +238,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <label for="editExpCat">Expense Category</label>
                     <input type="text" id="editExpCat" name="expense_category" required>
                 </div>
-
                 <button class="submitForm" type="submit">Save</button>
             </form>
         </div>
     </div>
-
-
     <div class="goalOverlay" id="expenseOverlay"></div>
-
     <div class="addGoalForm" id="expenseForm">
         <div class="addIncomeFormCard">
             <h1>Set Expense Limit</h1>
@@ -303,25 +256,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </form>
         </div>
     </div>
-
-
-
-
     </div>
-
-
-
-
-
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const totalExpense = <?= json_encode($conn->query("SELECT SUM(expense_amount) as total FROM expenses WHERE user_id = $user_id")->fetch_assoc()['total'] ?? 0); ?>;
         const expenseLimitAmount = <?= json_encode($conn->query("SELECT expense_limit FROM users WHERE id = $user_id")->fetch_assoc()['expense_limit'] ?? 0); ?>;
     </script>
-
-
     <script src="charts.js"></script>
 </body>
-
 </html>
