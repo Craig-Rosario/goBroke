@@ -8,7 +8,7 @@
 body {
     display: flex;
     min-height: 100vh;
-    background-color: #0d1117;  /* Darker background for a techy vibe */
+    background-color: #0d1117;
     color: #fff;
     font-smoothing: antialiased;
 }
@@ -19,7 +19,7 @@ body {
     min-height: 100vh;
     position: fixed;
     width: 250px;
-    background-color: #161b22;  /* Dark tech-inspired color */
+    background-color: #161b22;
     padding: 20px;
     transition: transform 0.3s ease, width 0.3s ease;
     overflow: hidden;
@@ -44,7 +44,7 @@ body {
 .sideBarTitle h2 {
     margin: 0;
     font-size: 1.5rem;
-    color: #00BFFF;  /* Bright techy blue */
+    color: #00BFFF;
     transition: 0.3s;
 }
 
@@ -183,10 +183,10 @@ header p {
 
 .savingsCard {
     margin-top: 20px;
-    background-color: #222b36;  /* Darker tone for a modern, professional feel */
+    background-color: #222b36;
     padding: 20px;
     border-radius: 15px;
-    height: 500px;
+    height: 400px;
     text-align: center;
     position: relative;
     display: flex;
@@ -202,13 +202,14 @@ header p {
 }
 
 .savingsCard canvas {
-    width: 600px;
-    height: 600px;
+    width: 300px !important;
+    height: 300px !important;
+    margin: 0 auto;
 }
 
 .goalChart {
-    width: 600px;
-    height: 600px;
+    width: 300px;
+    height: 300px;
 }
 
 .savings-amount {
