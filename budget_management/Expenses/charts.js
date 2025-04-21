@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const initialSpent = totalExpense;
-    updateExpenseChart(initialSpent);  
+    updateExpenseChart(totalExpense, expenseLimitAmount);  // Corrected to use expenseLimitAmount
 });
 
-function updateExpenseChart(spentAmount) {
-    const goal = spentAmount * 1.25;
-    const remaining = Math.max(goal - spentAmount, 0);
+function updateExpenseChart(spentAmount, limitAmount) {
+    const remaining = Math.max(limitAmount - spentAmount, 0);
 
     const chartData = {
         datasets: [{
@@ -29,19 +27,26 @@ function updateExpenseChart(spentAmount) {
     const ctx2 = document.getElementById('goalChart3').getContext('2d');
 
     if (window.expenseChartInstance) {
-        window.expenseChartInstance.destroy();  
+        window.expenseChartInstance.destroy();
     }
 
-    window.expenseChartInstance = new Chart(ctx2, { type: 'doughnut', data: chartData, options: chartOptions });
+    window.expenseChartInstance = new Chart(ctx2, {
+        type: 'doughnut',
+        data: chartData,
+        options: chartOptions
+    });
 
     document.querySelectorAll('.expense-amount').forEach(el => {
         el.textContent = '₹' + spentAmount.toLocaleString();
     });
 }
 
+// Call this after expense deletion or update
 function updateAfterExpenseDelete(newExpenseValue) {
-    updateExpenseChart(newExpenseValue);
+    updateExpenseChart(newExpenseValue, expenseLimitAmount);
 }
 
-let updatedTotalExpense = totalExpense;  
-updateExpenseChart(updatedTotalExpense);
+// Optional: dynamic update support
+if (typeof updatedTotalExpense !== 'undefined') {
+    updateExpenseChart(updatedTotalExpense, expenseLimitAmount);
+}

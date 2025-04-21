@@ -32,6 +32,14 @@ if (isset($_GET['delete_id']) && is_numeric($_GET['delete_id'])) {
     $stmt->close();
 }
 
+// Fetch expense limit (if any) for the user
+$stmt = $conn->prepare("SELECT expense_limit FROM users WHERE id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$stmt->bind_result($expense_limit);
+$stmt->fetch();
+$stmt->close();
+
 // INSERT or UPDATE Expense
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $expense_name = trim($_POST['expense_name'] ?? '');
@@ -39,6 +47,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $expense_date = $_POST['expense_date'] ?? '';
     $expense_category = trim($_POST['expense_category'] ?? '');
 
+    // Handle expense limit update if provided
+    if (isset($_POST['expense_limit'])) {
+        $new_expense_limit = floatval($_POST['expense_limit']);
+        
+        if ($new_expense_limit >= 0) {
+            $stmt = $conn->prepare("UPDATE users SET expense_limit = ? WHERE id = ?");
+            $stmt->bind_param("di", $new_expense_limit, $user_id);
+
+            if ($stmt->execute()) {
+                // Optionally update the page or redirect
+                header("Location: index.php?success=Expense limit updated successfully");
+                exit();
+            } else {
+                $error = "Error updating expense limit: " . $stmt->error;
+            }
+            $stmt->close();
+        } else {
+            $error = "Please provide a valid expense limit.";
+        }
+    }
+
+    // Handle adding or updating expenses
     if ($expense_name && $expense_amount && $expense_date && $expense_category) {
         if (!empty($_POST['expense_id'])) {
             // UPDATE existing expense
@@ -72,6 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 ?>
+
 
 
 
@@ -141,6 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </div>
             </div>
         </div>
+        <button class="addBtn" onclick="openExpenseLimitForm()"><i class="fa-solid fa-bullseye"></i> Set Expense Limit</button>
 
         
         <div class="analytics">
@@ -256,6 +288,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
 
 
+    <div class="goalOverlay" id="expenseOverlay"></div>
+
+    <div class="addGoalForm" id="expenseForm">
+        <div class="addIncomeFormCard">
+            <h1>Set Expense Limit</h1>
+            <button class="closeBtn" onclick="closeExpenseForm()"><i class="fa-solid fa-xmark"></i></button>
+            <form method="POST" action="index.php" id="expenseInputForm">
+                <div class="expenseName">
+                    <label for="expenseLimit">Expense Limit</label>
+                    <input type="number" id="expenseLimit" name="expense_limit" required>
+                </div>
+                <button class="submitForm" type="submit">Set Limit</button>
+            </form>
+        </div>
+    </div>
+
+
+
 
     </div>
 
@@ -267,7 +317,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const totalExpense = <?= json_encode($conn->query("SELECT SUM(expense_amount) as total FROM expenses WHERE user_id = $user_id")->fetch_assoc()['total'] ?? 0); ?>;
+        const expenseLimitAmount = <?= json_encode($conn->query("SELECT expense_limit FROM users WHERE id = $user_id")->fetch_assoc()['expense_limit'] ?? 0); ?>;
     </script>
+
+
     <script src="charts.js"></script>
 </body>
 

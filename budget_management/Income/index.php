@@ -11,6 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
+// Handle deleting income
 if (isset($_GET['delete_id']) && is_numeric($_GET['delete_id'])) {
     $delete_id = (int) $_GET['delete_id'];
 
@@ -26,43 +27,75 @@ if (isset($_GET['delete_id']) && is_numeric($_GET['delete_id'])) {
     $stmt->close();
 }
 
+// Handle form submission (income and goal)
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $income_name = trim($_POST['income_name'] ?? '');
-    $income_amount = floatval($_POST['income_amount'] ?? 0);
-    $income_date = $_POST['income_date'] ?? '';
-    $income_category = trim($_POST['income_category'] ?? '');
+    // Handle adding/updating income
+    if (isset($_POST['income_name'], $_POST['income_amount'], $_POST['income_date'], $_POST['income_category'])) {
+        $income_name = trim($_POST['income_name']);
+        $income_amount = floatval($_POST['income_amount']);
+        $income_date = $_POST['income_date'];
+        $income_category = trim($_POST['income_category']);
 
-    if ($income_name && $income_amount && $income_date && $income_category) {
-        if (!empty($_POST['income_id'])) {
-            $income_id = (int) $_POST['income_id'];
+        if ($income_name && $income_amount > 0 && $income_date && $income_category) {
+            if (!empty($_POST['income_id'])) {
+                // Updating existing income
+                $income_id = (int) $_POST['income_id'];
 
-            $stmt = $conn->prepare("UPDATE incomes SET income_name = ?, income_amount = ?, income_date = ?, income_category = ? WHERE id = ? AND user_id = ?");
-            $stmt->bind_param("sdssii", $income_name, $income_amount, $income_date, $income_category, $income_id, $user_id);
+                $stmt = $conn->prepare("UPDATE incomes SET income_name = ?, income_amount = ?, income_date = ?, income_category = ? WHERE id = ? AND user_id = ?");
+                $stmt->bind_param("sdssii", $income_name, $income_amount, $income_date, $income_category, $income_id, $user_id);
+
+                if ($stmt->execute()) {
+                    header("Location: index.php");
+                    exit();
+                } else {
+                    $error = "Error updating income: " . $stmt->error;
+                }
+                $stmt->close();
+            } else {
+                // Inserting new income
+                $stmt = $conn->prepare("INSERT INTO incomes (user_id, income_name, income_amount, income_date, income_category) VALUES (?, ?, ?, ?, ?)");
+                $stmt->bind_param("isdss", $user_id, $income_name, $income_amount, $income_date, $income_category);
+
+                if ($stmt->execute()) {
+                    header("Location: index.php");
+                    exit();
+                } else {
+                    $error = "Error adding income: " . $stmt->error;
+                }
+                $stmt->close();
+            }
+        } else {
+            $error = "Please fill in all the required fields.";
+        }
+    }
+
+    // Handle setting or updating income goal
+    if (isset($_POST['goal_name'], $_POST['goal_amount'])) {
+        $goal_name = trim($_POST['goal_name']);
+        $goal_amount = floatval($_POST['goal_amount']);
+
+        if ($goal_name && $goal_amount > 0) {
+            // Update the user's income goal in the database
+            $stmt = $conn->prepare("UPDATE users SET income_goal = ? WHERE id = ?");
+            $stmt->bind_param("di", $goal_amount, $user_id);
 
             if ($stmt->execute()) {
-                header("Location: index.php");
+                header("Location: index.php?success=Goal updated successfully");
                 exit();
             } else {
-                $error = "Error updating income: " . $stmt->error;
+                $error = "Error updating goal: " . $stmt->error;
             }
             $stmt->close();
         } else {
-            $stmt = $conn->prepare("INSERT INTO incomes (user_id, income_name, income_amount, income_date, income_category) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("isdss", $user_id, $income_name, $income_amount, $income_date, $income_category);
-
-            if ($stmt->execute()) {
-                header("Location: index.php");
-                exit();
-            } else {
-                $error = "Error adding income: " . $stmt->error;
-            }
-            $stmt->close();
+            $error = "Please provide a valid goal amount.";
         }
-    } else {
-        $error = "Please fill in all the required fields.";
     }
 }
 ?>
+
+
+<!-- Your HTML structure would go here (including form and goal section) -->
+
 
 
 <!DOCTYPE html>
@@ -119,6 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </div>
             </div>
         </div>
+        <button class="addBtn" onclick="openGoalForm()"><i class="fa-solid fa-bullseye"></i> Add Goal</button>
 
         <div class="analytics">
             <h3>All Incomes</h3>
@@ -222,11 +256,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
     </div>
 
+    <div class="goalOverlay" id="goalOverlay"></div>
+
+    <div class="addGoalForm" id="goalForm">
+        <div class="addIncomeFormCard">
+            <h1>Add Income Goal</h1>
+            <button class="closeBtn" onclick="closeGoalForm()"><i class="fa-solid fa-xmark"></i></button>
+            <form method="POST" action="index.php" id="goalInputForm">
+                <div class="incomeName">
+                    <label for="goalName">Goal Name</label>
+                    <input type="text" id="goalName" name="goal_name" required>
+                </div>
+                <div class="incomeAmt">
+                    <label for="goalAmt">Goal Amount</label>
+                    <input type="number" id="goalAmt" name="goal_amount" required>
+                </div>
+                <button class="submitForm" type="submit">Set Goal</button>
+            </form>
+        </div>
+    </div>
+
+
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const totalIncome = <?= json_encode($conn->query("SELECT SUM(income_amount) as total FROM incomes WHERE user_id = $user_id")->fetch_assoc()['total'] ?? 0); ?>;
+        const goalAmount = <?= json_encode($conn->query("SELECT income_goal FROM users WHERE id = $user_id")->fetch_assoc()['income_goal'] ?? 0); ?>;
     </script>
+
     <script src="charts.js"></script>
 </body>
 </html>
