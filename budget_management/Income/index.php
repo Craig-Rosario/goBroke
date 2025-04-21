@@ -4,7 +4,6 @@ include("../Registration/database.php");
 
 $error = "";
 
-// Redirect to login if not logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../Login/login.php");
     exit();
@@ -12,7 +11,6 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Handle delete
 if (isset($_GET['delete_id'])) {
     $delete_id = $_GET['delete_id'];
 
@@ -28,7 +26,6 @@ if (isset($_GET['delete_id'])) {
     $stmt->close();
 }
 
-// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $income_name = $_POST['income_name'] ?? '';
     $income_amount = $_POST['income_amount'] ?? '';
@@ -36,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $income_category = $_POST['income_category'] ?? '';
 
     if (isset($_POST['income_id']) && !empty($_POST['income_id'])) {
-        // Update existing income
         $income_id = $_POST['income_id'];
         if ($income_name && $income_amount && $income_date && $income_category) {
             $stmt = $conn->prepare("UPDATE incomes SET income_name = ?, income_amount = ?, income_date = ?, income_category = ? WHERE id = ? AND user_id = ?");
@@ -53,7 +49,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error = "Please fill all fields.";
         }
     } else {
-        // Insert new income
         if ($income_name && $income_amount && $income_date && $income_category) {
             $stmt = $conn->prepare("INSERT INTO incomes (user_id, income_name, income_amount, income_date, income_category) VALUES (?, ?, ?, ?, ?)");
             $stmt->bind_param("issds", $user_id, $income_name, $income_amount, $income_date, $income_category);
@@ -72,7 +67,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<!-- HTML starts -->
 <!DOCTYPE html>
 <html lang="en">
 <head>

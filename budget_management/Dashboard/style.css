@@ -7,32 +7,31 @@
 
 body {
     display: flex;
-    min-height: 100vh;  
-    background-color: #282C37;
+    min-height: 100vh;
+    background-color: #0d1117;  /* Darker background for a techy vibe */
     color: #fff;
+    font-smoothing: antialiased;
 }
-
 
 .sideBar {
     display: flex;
-    flex-direction: column;  
-    min-height: 100vh;  
-    position: fixed;         
-    width: 250px;  
-    background-color: #1E212B;
+    flex-direction: column;
+    min-height: 100vh;
+    position: fixed;
+    width: 250px;
+    background-color: #161b22;  /* Dark tech-inspired color */
     padding: 20px;
     transition: transform 0.3s ease, width 0.3s ease;
     overflow: hidden;
     z-index: 10;
+    box-shadow: 0px 4px 15px rgba(0, 255, 255, 0.1);
 }
 
 .sideBar.collapsed {
-    width: 60px;  
+    width: 60px;
     padding: 20px 10px;
-    transform: translateX(0); 
+    transform: translateX(0);
 }
-
-
 
 .sideBar h2 {
     transition: opacity 0.3s ease;
@@ -44,21 +43,25 @@ body {
 
 .sideBarTitle h2 {
     margin: 0;
+    font-size: 1.5rem;
+    color: #00BFFF;  /* Bright techy blue */
     transition: 0.3s;
 }
 
-.sideBarTitle h3{
+.sideBarTitle h3 {
     margin-left: 5px;
     margin-bottom: 10px;
+    color: #7FDBFF;
 }
-
 
 .red {
     color: #FF4C4C;
+    text-shadow: 0px 0px 10px rgba(255, 76, 76, 0.8);
 }
 
 .green {
     color: #00FF7F;
+    text-shadow: 0px 0px 10px rgba(0, 255, 127, 0.8);
 }
 
 .shortText {
@@ -66,7 +69,6 @@ body {
     font-size: 28px;
     margin: 15px 0;
 }
-
 
 .sideBar.collapsed .fullText {
     display: none;
@@ -76,37 +78,37 @@ body {
     display: inline;
 }
 
-
-
-
 .toggleButton {
     background: transparent;
     border: none;
-    color: #fff;                  
-    font-size: 24px;              
-    cursor: pointer;              
-    transition: 0.3s;             
-    padding: 5px;                
+    color: #00BFFF;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px;
     border-radius: 5px;
-    margin-left: 8px;           
+    margin-left: 8px;
 }
 
 .toggleButton:hover {
-    background: #495064;          
+    background: #30363d;
+    box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.5);
+    transform: scale(1.1);
 }
-
 
 .sideBar nav ul li a {
     text-decoration: none;
-    color: inherit; 
+    color: inherit;
 }
 
-.sideBar nav ul, .sideBar .logout {
+.sideBar nav ul,
+.sideBar .logout {
     list-style: none;
     padding: 0;
 }
 
-.sideBar nav ul li, .sideBar .logout li {
+.sideBar nav ul li,
+.sideBar .logout li {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -114,72 +116,64 @@ body {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    transition: 0.3s;
-    white-space: nowrap;   
-    overflow: hidden;      
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    background: #1f2429;
 }
 
-
 .sideBar ul li i {
-    font-size: 22px;   
+    font-size: 22px;
     transition: color 0.3s;
 }
 
-
 .sideBar.collapsed nav ul li span,
 .sideBar.collapsed .logout li span {
-    display: none;       
+    display: none;
 }
-
 
 .sideBar.collapsed nav ul li i,
 .sideBar.collapsed .logout li i {
-    font-size: 24px;      
-    margin: 0 auto;       
+    font-size: 24px;
+    margin: 0 auto;
     transition: 0.3s;
 }
 
-
-.sideBar nav ul li:hover, .sideBar .logout li:hover {
-    background-color: #495064;
+.sideBar nav ul li:hover,
+.sideBar .logout li:hover {
+    background-color: #30363d;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    transform: scale(1.05);
 }
-
-
-
 
 .logout {
     margin-top: auto;
 }
-.logout li a{
+
+.logout li a {
     text-decoration: none;
-    color: inherit; 
+    color: inherit;
 }
-
-.sideBar nav ul li:hover, .sideBar .logout li:hover {
-    background-color: #495064;
-}
-
 
 .mainContainer {
     flex: 1;
     margin-left: 250px;
-    overflow-y: auto; 
+    overflow-y: auto;
     padding: 20px;
     transition: margin-left 0.3s ease;
 }
 
 .sideBar.collapsed + .mainContainer {
     margin-left: 60px;
-    transition: 0.3s;
-    transition: margin-left 0.3s ease;
 }
 
 header h1 {
     font-size: 30px;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
 }
 
 header p {
-    color: #aaa;
+    color: #bbb;
 }
 
 .totalSavings {
@@ -189,27 +183,33 @@ header p {
 
 .savingsCard {
     margin-top: 20px;
-    background-color: #495064;
+    background-color: #222b36;  /* Darker tone for a modern, professional feel */
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
     height: 500px;
     text-align: center;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.savingsCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.7);
 }
 
 .savingsCard canvas {
-    width: 600px;  
+    width: 600px;
     height: 600px;
 }
 
 .goalChart {
-    width: 600px;  
-    height: 600px; 
+    width: 600px;
+    height: 600px;
 }
-
 
 .savings-amount {
     font-size: 24px;
@@ -218,8 +218,8 @@ header p {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
 }
-
 
 .chartText {
     position: absolute;
@@ -228,11 +228,10 @@ header p {
     transform: translate(-50%, -25%);
     font-size: 1.6rem;
     font-weight: 600;
-    color: #FFD700;  
+    color: #FFD700;
     text-align: center;
     white-space: nowrap;
 }
-
 
 .analytics {
     display: flex;
@@ -243,34 +242,27 @@ header p {
     width: 100%;
 }
 
-
-.incomeCard h4{
-    font-size: 22px;
-}
-
-.expenseCard h4{
-    font-size: 22px;
-}
-
-.remindersCard h4{
-    font-size: 22px;
-}
 .card {
     margin-top: 10px;
     height: 300px;
     min-width: 450px;
-    background-color: #495064;
+    background-color: #222b36;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
     flex: 1;
     text-align: center;
-    transition: 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
 }
 
 .sideBar.collapsed + .mainContainer .card {
     transition: 0.3s;
     min-width: 500px;
-    
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.7);
 }
 
 .card h4 {
@@ -280,19 +272,21 @@ header p {
 .income {
     color: #00FF7F;
     font-weight: bold;
+    text-shadow: 0 0 15px rgba(0, 255, 127, 0.6);
 }
 
 .expenses {
     color: #FF4C4C;
     font-weight: bold;
+    text-shadow: 0 0 15px rgba(255, 76, 76, 0.6);
 }
 
 .reminders {
     margin-top: 10px;
     height: 300px;
-    background-color: #495064;
+    background-color: #222b36;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 .reminders h3 {
@@ -301,12 +295,19 @@ header p {
 
 .reminders ul {
     list-style: none;
-    background-color: #495064;
+    background-color: #222b36;
 }
 
 .reminders ul li {
-    background-color: #495064;
+    background-color: #222b36;
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 5px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.reminders ul li:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
 }
