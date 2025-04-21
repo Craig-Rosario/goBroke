@@ -4,76 +4,75 @@ include("../Registration/database.php");
 
 $error = "";
 
-if (isset($_GET['delete_id'])) {
-    $delete_id = $_GET['delete_id'];
-    $user_id = $_SESSION['user_id']; 
+// Ensure the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../Login/login.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+
+// DELETE Expense
+if (isset($_GET['delete_id']) && is_numeric($_GET['delete_id'])) {
+    $delete_id = (int) $_GET['delete_id'];
 
     $stmt = $conn->prepare("DELETE FROM expenses WHERE id = ? AND user_id = ?");
     $stmt->bind_param("ii", $delete_id, $user_id);
 
     if ($stmt->execute()) {
-        $totalExpense = $conn->query("SELECT SUM(expense_amount) as total FROM expenses WHERE user_id = $user_id")->fetch_assoc()['total'] ?? 0;
+        // Optional: calculate total expense if you use it in frontend
+        $totalExpense = $conn->query("SELECT SUM(expense_amount) AS total FROM expenses WHERE user_id = $user_id")->fetch_assoc()['total'] ?? 0;
+
         echo "<script>const totalExpense = " . json_encode($totalExpense) . ";</script>";
         header("Location: index.php");
         exit();
     } else {
-        $error = "Error: " . $stmt->error;
+        $error = "Error deleting expense: " . $stmt->error;
     }
     $stmt->close();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!isset($_SESSION['user_id'])) {
-        header("Location: ../Login/login.php");
-        exit();
-    }
+// INSERT or UPDATE Expense
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $expense_name = trim($_POST['expense_name'] ?? '');
+    $expense_amount = floatval($_POST['expense_amount'] ?? 0);
+    $expense_date = $_POST['expense_date'] ?? '';
+    $expense_category = trim($_POST['expense_category'] ?? '');
 
-    $user_id = $_SESSION['user_id']; 
+    if ($expense_name && $expense_amount && $expense_date && $expense_category) {
+        if (!empty($_POST['expense_id'])) {
+            // UPDATE existing expense
+            $expense_id = (int) $_POST['expense_id'];
 
-    if (isset($_POST['expense_id']) && !empty($_POST['expense_id'])) {
-        $expense_id = $_POST['expense_id'];
-        $expense_name = $_POST['expense_name'];
-        $expense_amount = $_POST['expense_amount'];
-        $expense_date = $_POST['expense_date'];
-        $expense_category = $_POST['expense_category'];
-
-        if (!empty($expense_name) && !empty($expense_amount) && !empty($expense_date) && !empty($expense_category)) {
             $stmt = $conn->prepare("UPDATE expenses SET expense_name = ?, expense_amount = ?, expense_date = ?, expense_category = ? WHERE id = ? AND user_id = ?");
             $stmt->bind_param("sdssii", $expense_name, $expense_amount, $expense_date, $expense_category, $expense_id, $user_id);
-
-            if ($stmt->execute()) {
-                header("Location: index.php"); 
-                exit();
-            } else {
-                $error = "Error: " . $stmt->error;
-            }
-            $stmt->close();
-        } else {
-            $error = "Please fill all fields.";
-        }
-    } else {
-        $expense_name = $_POST['expense_name'];
-        $expense_amount = $_POST['expense_amount'];
-        $expense_date = $_POST['expense_date'];
-        $expense_category = $_POST['expense_category'];
-
-        if (!empty($expense_name) && !empty($expense_amount) && !empty($expense_date) && !empty($expense_category)) {
-            $stmt = $conn->prepare("INSERT INTO expenses (user_id, expense_name, expense_amount, expense_date, expense_category) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("issds", $user_id, $expense_name, $expense_amount, $expense_date, $expense_category);
 
             if ($stmt->execute()) {
                 header("Location: index.php");
                 exit();
             } else {
-                $error = "Error: " . $stmt->error;
+                $error = "Error updating expense: " . $stmt->error;
             }
             $stmt->close();
         } else {
-            $error = "Please fill all fields.";
+            // INSERT new expense
+            $stmt = $conn->prepare("INSERT INTO expenses (user_id, expense_name, expense_amount, expense_date, expense_category) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("isdss", $user_id, $expense_name, $expense_amount, $expense_date, $expense_category);
+
+            if ($stmt->execute()) {
+                header("Location: index.php");
+                exit();
+            } else {
+                $error = "Error adding expense: " . $stmt->error;
+            }
+            $stmt->close();
         }
+    } else {
+        $error = "Please fill in all the required fields.";
     }
 }
 ?>
+
 
 
 

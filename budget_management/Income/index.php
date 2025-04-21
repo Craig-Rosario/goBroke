@@ -11,8 +11,8 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-if (isset($_GET['delete_id'])) {
-    $delete_id = $_GET['delete_id'];
+if (isset($_GET['delete_id']) && is_numeric($_GET['delete_id'])) {
+    $delete_id = (int) $_GET['delete_id'];
 
     $stmt = $conn->prepare("DELETE FROM incomes WHERE id = ? AND user_id = ?");
     $stmt->bind_param("ii", $delete_id, $user_id);
@@ -21,20 +21,21 @@ if (isset($_GET['delete_id'])) {
         header("Location: index.php");
         exit();
     } else {
-        $error = "Error: " . $stmt->error;
+        $error = "Error deleting income: " . $stmt->error;
     }
     $stmt->close();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $income_name = $_POST['income_name'] ?? '';
-    $income_amount = $_POST['income_amount'] ?? '';
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $income_name = trim($_POST['income_name'] ?? '');
+    $income_amount = floatval($_POST['income_amount'] ?? 0);
     $income_date = $_POST['income_date'] ?? '';
-    $income_category = $_POST['income_category'] ?? '';
+    $income_category = trim($_POST['income_category'] ?? '');
 
-    if (isset($_POST['income_id']) && !empty($_POST['income_id'])) {
-        $income_id = $_POST['income_id'];
-        if ($income_name && $income_amount && $income_date && $income_category) {
+    if ($income_name && $income_amount && $income_date && $income_category) {
+        if (!empty($_POST['income_id'])) {
+            $income_id = (int) $_POST['income_id'];
+
             $stmt = $conn->prepare("UPDATE incomes SET income_name = ?, income_amount = ?, income_date = ?, income_category = ? WHERE id = ? AND user_id = ?");
             $stmt->bind_param("sdssii", $income_name, $income_amount, $income_date, $income_category, $income_id, $user_id);
 
@@ -42,30 +43,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: index.php");
                 exit();
             } else {
-                $error = "Error: " . $stmt->error;
+                $error = "Error updating income: " . $stmt->error;
             }
             $stmt->close();
         } else {
-            $error = "Please fill all fields.";
-        }
-    } else {
-        if ($income_name && $income_amount && $income_date && $income_category) {
             $stmt = $conn->prepare("INSERT INTO incomes (user_id, income_name, income_amount, income_date, income_category) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("issds", $user_id, $income_name, $income_amount, $income_date, $income_category);
+            $stmt->bind_param("isdss", $user_id, $income_name, $income_amount, $income_date, $income_category);
 
             if ($stmt->execute()) {
                 header("Location: index.php");
                 exit();
             } else {
-                $error = "Error: " . $stmt->error;
+                $error = "Error adding income: " . $stmt->error;
             }
             $stmt->close();
-        } else {
-            $error = "Please fill all fields.";
         }
+    } else {
+        $error = "Please fill in all the required fields.";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
