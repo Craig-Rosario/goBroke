@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,60 +8,59 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
-
 <?php
 session_start();
 $user_id = $_SESSION['user_id'] ?? 1;
-
 include("../Registration/database.php");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_reminder'])) {
     $name = $_POST['reminder_name'];
     $amount = $_POST['reminder_amount'];
     $date = $_POST['reminder_date'];
     $category = $_POST['reminder_category'];
-
-    $stmt = $conn->prepare("INSERT INTO reminders (user_id, reminder_name, reminder_amount, reminder_date, reminder_category) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO reminders (user_id, reminder_name, reminder_amount, reminder_date, reminder_category, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
+    if ($stmt === false) {
+        die("Prepare statement failed: " . $conn->error);
+    }
     $stmt->bind_param("isdss", $user_id, $name, $amount, $date, $category);
     $stmt->execute();
     $stmt->close();
     header("Location: index.php");
     exit();
 }
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_reminder'])) {
     $id = $_POST['reminder_id'];
     $name = $_POST['reminder_name'];
     $amount = $_POST['reminder_amount'];
     $date = $_POST['reminder_date'];
     $category = $_POST['reminder_category'];
-
     $stmt = $conn->prepare("UPDATE reminders SET reminder_name=?, reminder_amount=?, reminder_date=?, reminder_category=? WHERE id=? AND user_id=?");
+    if ($stmt === false) {
+        die("Prepare statement failed: " . $conn->error);
+    }
     $stmt->bind_param("sdssii", $name, $amount, $date, $category, $id, $user_id);
     $stmt->execute();
     $stmt->close();
     header("Location: index.php");
     exit();
 }
-
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
     $stmt = $conn->prepare("DELETE FROM reminders WHERE id = ? AND user_id=?");
+    if ($stmt === false) {
+        die("Prepare statement failed: " . $conn->error);
+    }
     $stmt->bind_param("ii", $id, $user_id);
     $stmt->execute();
     $stmt->close();
     header("Location: index.php");
     exit();
 }
-
 $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER BY reminder_date ASC");
 ?>
-
 <div class="sideBar">
     <div class="sideBarTitle">
         <h2><span class="fullText"><span class="red">Go</span><span class="green">Broke</span></span></h2>
@@ -81,7 +79,6 @@ $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER B
         <li><a href="../Login/login.php"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></a></li>
     </ul>
 </div>
-
 <div class="mainContainer">
     <header>
         <h1>Reminders</h1>
@@ -89,17 +86,17 @@ $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER B
     <div class="income">
         <div class="totalIncome">
             <h3>Upcoming Bills</h3>
-            <div class="incomeCard">
-                <ul style="list-style-type: none; padding-left: 0; font-size: 16px;">
+            <div class="incomeCard" style="padding: 15px; border-radius: 8px; background-color: #3A3F50; color: #eee;">
+                <ul style="list-style-type: none; padding-left: 0; font-size: 16px; margin-bottom: 0;">
                     <?php
                     $upcoming = $conn->query("SELECT reminder_name, reminder_date FROM reminders WHERE user_id = $user_id AND reminder_date >= CURDATE() ORDER BY reminder_date ASC LIMIT 5");
                     if ($upcoming->num_rows > 0):
                         $counter = 1;
                         while ($row = $upcoming->fetch_assoc()):
                     ?>
-                            <li>
-                                <span><?= $counter ?>. <?= htmlspecialchars($row['reminder_name']) ?> - <?= $row['reminder_date'] ?></span>
-                            </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #555;">
+                                    <span><?= $counter ?>. <?= htmlspecialchars($row['reminder_name']) ?> - <?= $row['reminder_date'] ?></span>
+                                </li>
                     <?php
                             $counter++;
                         endwhile;
@@ -110,20 +107,18 @@ $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER B
                 </ul>
             </div>
         </div>
-
         <div class="incomeChart">
-            <h3>Reminder Receipt</h3>
+            <h3>Reminder Details</h3>
             <div class="incomeCard">
-                <canvas id="goalChart2"></canvas>
-                <p class="income-amount">₹5,432,000</p>
+                <div id="reminderReceipt">
+                    <p style="text-align: center; color: #bbb;">Click on a reminder in the table to view its details.</p>
+                </div>
             </div>
         </div>
     </div>
-
     <div class="analytics">
         <h3>All Reminders</h3>
         <button class="addBtn" onclick="openReminderForm()"><i class="fa-solid fa-plus"></i>Add</button>
-
         <div class="incomeTable">
             <div class="tableCard">
                 <table>
@@ -136,16 +131,16 @@ $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER B
                         <th>Delete</th>
                     </tr>
                     <?php while($row = $result->fetch_assoc()): ?>
-                    <tr>
+                    <tr onclick="displayReceipt(<?= htmlspecialchars(json_encode($row)) ?>)" style="cursor: pointer;">
                         <td><?= htmlspecialchars($row['reminder_name']) ?></td>
                         <td style="color:#00FF7F">₹<?= number_format($row['reminder_amount']) ?></td>
                         <td><?= $row['reminder_date'] ?></td>
                         <td><?= htmlspecialchars($row['reminder_category']) ?></td>
                         <td class="btns">
-                            <i style="color:white;" class="fa-solid fa-pen-to-square" onclick='openEditReminderForm(<?= json_encode($row) ?>)'></i>
+                            <i style="color:white;" class="fa-solid fa-pen-to-square" onclick='openEditReminderForm(<?= json_encode($row) ?>); event.stopPropagation();'></i>
                         </td>
                         <td class="btns" style="color: red;">
-                            <a href="?delete=<?= $row['id'] ?>" onclick="return confirm('Are you sure?')">
+                            <a href="?delete=<?= $row['id'] ?>" onclick="return confirm('Are you sure?'); event.stopPropagation();">
                                 <i style="color:#FF4C4C" class="fa-solid fa-trash"></i>
                             </a>
                         </td>
@@ -155,7 +150,6 @@ $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER B
             </div>
         </div>
     </div>
-
     <div class="reminderOverlay" id="reminderOverlay"></div>
     <div class="addReminderForm" id="addReminderForm">
         <div class="addIncomeFormCard">
@@ -179,7 +173,6 @@ $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER B
             </form>
         </div>
     </div>
-
     <div class="editReminderOverlay" id="editReminderOverlay"></div>
     <div class="editReminderForm" id="editReminderForm">
         <div class="addIncomeFormCard">
@@ -205,9 +198,6 @@ $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER B
         </div>
     </div>
 </div>
-
-
 <script src="script.js"></script>
-
 </body>
 </html>

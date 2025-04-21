@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -248,12 +249,12 @@ header h1 {
     background-color: #495064;
     padding: 20px;
     border-radius: 10px;
-    height: 350px;
+    height: auto; /* Adjusted height */
     text-align: center;
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch; /* Adjusted alignment */
 }
 
 .analytics {
