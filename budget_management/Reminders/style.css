@@ -7,18 +7,17 @@
 
 body {
     display: flex;
-    min-height: 100vh;  
+    min-height: 100vh;
     background-color: #282C37;
     color: #fff;
 }
 
-
 .sideBar {
     display: flex;
-    flex-direction: column;  
-    min-height: 100vh;  
-    position: fixed;         
-    width: 250px;  
+    flex-direction: column;
+    min-height: 100vh;
+    position: fixed;
+    width: 250px;
     background-color: #1E212B;
     padding: 20px;
     transition: transform 0.3s ease, width 0.3s ease;
@@ -27,12 +26,10 @@ body {
 }
 
 .sideBar.collapsed {
-    width: 60px;  
+    width: 60px;
     padding: 20px 10px;
-    transform: translateX(0); 
+    transform: translateX(0);
 }
-
-
 
 .sideBar h2 {
     transition: opacity 0.3s ease;
@@ -66,7 +63,6 @@ body {
     margin: 15px 0;
 }
 
-
 .sideBar.collapsed .fullText {
     display: none;
 }
@@ -83,28 +79,26 @@ body {
     cursor: pointer;
 }
 
-
 .toggleButton {
     background: transparent;
     border: none;
-    color: #fff;                  
-    font-size: 24px;              
-    cursor: pointer;              
-    transition: 0.3s;             
-    padding: 5px;                
-    border-radius: 5px;     
-    margin-left: 8px;      
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 8px;
 }
 
 .toggleButton:hover {
-    background: #495064;          
+    background: #495064;
 }
 
 .sideBar nav ul li a {
     text-decoration: none;
-    color: inherit; 
+    color: inherit;
 }
-
 
 .sideBar nav ul, .sideBar .logout {
     list-style: none;
@@ -120,37 +114,30 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
-    white-space: nowrap;   
-    overflow: hidden;      
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-
 .sideBar ul li i {
-    font-size: 22px;   
+    font-size: 22px;
     transition: color 0.3s;
 }
 
-
 .sideBar.collapsed nav ul li span,
 .sideBar.collapsed .logout li span {
-    display: none;       
+    display: none;
 }
-
 
 .sideBar.collapsed nav ul li i,
 .sideBar.collapsed .logout li i {
-    font-size: 24px;      
-    margin: 0 auto;       
+    font-size: 24px;
+    margin: 0 auto;
     transition: 0.3s;
 }
-
 
 .sideBar nav ul li:hover, .sideBar .logout li:hover {
     background-color: #495064;
 }
-
-
-
 
 .logout {
     margin-top: auto;
@@ -158,18 +145,17 @@ body {
 
 .logout li a{
     text-decoration: none;
-    color: inherit; 
+    color: inherit;
 }
 
 .sideBar nav ul li:hover, .sideBar .logout li:hover {
     background-color: #495064;
 }
 
-
 .mainContainer {
     flex: 1;
     margin-left: 250px;
-    overflow-y: auto; 
+    overflow-y: auto;
     padding: 20px;
     transition: margin-left 0.3s ease;
 }
@@ -184,13 +170,10 @@ header h1 {
     font-size: 30px;
 }
 
-
 .income{
     display: flex;
     flex-direction: row;
-    
 }
-
 
 .totalIncome{
     margin: 35px 35px 35px 0;
@@ -199,6 +182,55 @@ header h1 {
 }
 .totalIncome h3{
     color: white;
+    margin-bottom: 20px;
+}
+
+.totalIncome .incomeCard {
+    margin-top: 20px;
+    background-color: #495064;
+    padding: 15px;
+    border-radius: 10px;
+    height: auto;
+    text-align: left;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.totalIncome .incomeCard ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.totalIncome .incomeCard li {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background-color: #3A3F50;
+}
+
+.totalIncome .incomeCard li:last-child {
+    margin-bottom: 0;
+}
+
+.totalIncome .incomeCard li span:first-child {
+    font-weight: bold;
+    color: #00FF7F;
+    margin-right: 15px;
+}
+
+.totalIncome .incomeCard li span:nth-child(2) {
+    color: #eee;
+}
+
+.totalIncome .incomeCard li span:last-child {
+    color: #bbb;
+    font-size: 0.9em;
 }
 
 .incomeChart{
@@ -211,8 +243,7 @@ header h1 {
     color: white;
 }
 
-
-.incomeCard {
+.incomeChart .incomeCard {
     margin-top: 20px;
     background-color: #495064;
     padding: 20px;
@@ -224,8 +255,6 @@ header h1 {
     flex-direction: column;
     align-items: center;
 }
-
-
 
 .analytics {
     display: flex;
@@ -239,7 +268,6 @@ header h1 {
 .analytics h3{
     font-size: 22px;
 }
-
 
 .addBtn{
     background-color: #1E212B;
@@ -255,16 +283,10 @@ header h1 {
     background-color: #495064;
 }
 
-
-
-
-
-
 .incomeTable {
     background-color: #1E212B;
     padding: 20px;
     border-radius: 10px;
-    
     width: 100%;
 }
 
@@ -318,10 +340,6 @@ header h1 {
     cursor: pointer;
 }
 
-
-
-
-
 .reminderOverlay,
 .editReminderOverlay {
     position: fixed;
@@ -334,7 +352,6 @@ header h1 {
     display: none;
 }
 
-
 .addReminderForm,
 .editReminderForm {
     position: fixed;
@@ -344,9 +361,6 @@ header h1 {
     z-index: 100;
     display: none;
 }
-
-
-
 
 .incomeOverlay {
     position: fixed;
@@ -364,7 +378,7 @@ header h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 100;   
+    z-index: 100;
     display: none;
 }
 
@@ -372,7 +386,7 @@ header h1 {
     background: #333745;
     padding: 20px;
     border-radius: 12px;
-    width: 400px; 
+    width: 400px;
     position: relative;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
@@ -440,57 +454,4 @@ header h1 {
     background: rgba(0, 0, 0, 0.5);
     z-index: 99;
     display: none;
-}
-
-.totalIncome {
-    margin: 35px 35px 35px 0;
-    font-size: 22px;
-    width: 60%;
-}
-
-.totalIncome h3 {
-    color: white;
-    margin-bottom: 20px;
-}
-
-.incomeCard {
-    margin-top: 20px;
-    background-color: #495064;
-    padding: 20px;
-    border-radius: 10px;
-    height: auto; 
-    text-align: left; 
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch; 
-}
-
-.incomeCard ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.incomeCard li {
-    display: flex;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #505870; 
-}
-
-.incomeCard li:last-child {
-    border-bottom: none; 
-}
-
-.incomeCard li img {
-    width: 30px; 
-    height: 30px;
-    margin-right: 15px;
-    border-radius: 50%; 
-}
-
-.incomeCard li span {
-    font-size: 16px;
-    color: white;
 }

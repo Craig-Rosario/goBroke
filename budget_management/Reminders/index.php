@@ -92,36 +92,19 @@ $result = $conn->query("SELECT * FROM reminders WHERE user_id = $user_id ORDER B
             <div class="incomeCard">
                 <ul style="list-style-type: none; padding-left: 0; font-size: 16px;">
                     <?php
-                    $upcoming = $conn->query("SELECT reminder_name, reminder_date, reminder_category FROM reminders WHERE user_id = $user_id AND reminder_date >= CURDATE() ORDER BY reminder_date ASC LIMIT 5");
+                    $upcoming = $conn->query("SELECT reminder_name, reminder_date FROM reminders WHERE user_id = $user_id AND reminder_date >= CURDATE() ORDER BY reminder_date ASC LIMIT 5");
                     if ($upcoming->num_rows > 0):
+                        $counter = 1;
                         while ($row = $upcoming->fetch_assoc()):
-                            $image = '';
-                            switch (strtolower($row['reminder_category'])) {
-                                case 'electricity':
-                                    $image = 'electricity.png'; 
-                                    break;
-                                case 'internet':
-                                    $image = 'internet.png'; 
-                                    break;
-                                case 'credit card':
-                                    $image = 'credit_card.png'; 
-                                    break;
-                                case 'stationary':
-                                    $image = 'stationary.png'; 
-                                    break;
-                                case 'books':
-                                    $image = 'books.png'; 
-                                    break;
-                                default:
-                                    $image = 'default.png'; 
-                                    break;
-                            }
                     ?>
                             <li>
-                                <img src="<?= $image ?>" alt="<?= htmlspecialchars($row['reminder_category']) ?>">
-                                <span><?= htmlspecialchars($row['reminder_name']) ?> - <?= $row['reminder_date'] ?></span>
+                                <span><?= $counter ?>. <?= htmlspecialchars($row['reminder_name']) ?> - <?= $row['reminder_date'] ?></span>
                             </li>
-                    <?php endwhile; else: ?>
+                    <?php
+                            $counter++;
+                        endwhile;
+                    else:
+                    ?>
                         <li>No upcoming bills</li>
                     <?php endif; ?>
                 </ul>
