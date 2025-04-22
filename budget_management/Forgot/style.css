@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Orbitron', sans-serif;
     box-sizing: border-box;
 }
 
@@ -10,6 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background: #0d0d0d; 
     background: url('../../public/assets/BG.png') no-repeat center center/cover;
 }
 
@@ -21,20 +22,23 @@ form {
     height: auto;
     color: white;
     border: 2px solid rgba(255,255,255,0.2);
-    background-color: rgba(40, 44, 51, 0.01);
+    background-color: rgba(0, 0, 0, 0.8); 
     backdrop-filter: blur(20px);
     width: 350px;
     padding: 25px;
     border-radius: 15px;
     text-align: center;
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-    opacity: 0.85;
+    opacity: 0.9;
+    animation: fadeInPop 0.6s ease-out;
 }
 
 .wrap h1 {
     margin-bottom: 20px;
     font-size: 24px;
     font-weight: bold;
+    color: #00FFFF; 
+    text-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF; 
 }
 
 .wrap2 {
@@ -47,6 +51,7 @@ form {
 .wrap2 h2 {
     font-size: 20px;
     margin-bottom: 20px;
+    color: #00FFFF; 
 }
 
 .mail, .pass, .user {
@@ -59,82 +64,113 @@ label {
     font-size: 14px;
     display: block;
     margin-bottom: 5px;
+    color: #eee;
 }
 
 input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    background: white;
-    color: black;
+    border: 1px solid #444;
+    background: #1e1e1e;
+    color: white;
     border-radius: 5px;
     outline: none;
+    transition: border 0.3s ease;
+}
+
+input:focus {
+    border: 1px solid #00FFFF; 
+    box-shadow: 0 0 3px #00FFFF; 
 }
 
 .register-btn {
     width: 100%;
     padding: 10px;
-    background: #0b4f9e;
+    background: #00FFFF; 
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     margin-top: 20px;
+    box-shadow: 0 0 10px #00FFFF;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .register-btn:hover {
-    background: #0a3d7a;
+    background: #00b3b3; 
+    box-shadow: 0 0 5px #00b3b3;
 }
 
 p {
     margin: 20px 0;
     font-size: 14px;
+    color: #aaa;
 }
 
 .social-buttons {
     display: flex;
     justify-content: center;
     gap: 15px;
+    margin-top: 10px;
 }
 
 .social-buttons button {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    background: white;
-    color: black;
+    background: #1a1a1a;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
-    border: none;
+    font-size: 22px;
+    border: 2px solid #444;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px #000;
 }
 
 .social-buttons button:hover {
-    background: #ddd;
+    background: #333;
+    box-shadow: 0 0 12px #fff;
 }
 
 .google-btn {
-    background-color: #DB4437; 
+    background-color: #db4437;
     color: white;
+    box-shadow: 0 0 10px #db4437;
 }
 
 .github-btn {
     background-color: #333; 
     color: white;
+    box-shadow: 0 0 10px #fff;
 }
 
 .facebook-btn {
-    background-color: #4267B2;
+    background-color: #4267b2; 
     color: white;
+    box-shadow: 0 0 10px #4267b2;
 }
 
 .red {
     color: #FF4C4C;
+    text-shadow: 0 0 5px #FF4C4C;
 }
 
 .green {
     color: #00FF7F;
+    text-shadow: 0 0 5px #00FF7F;
+}
+
+@keyframes fadeInPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }

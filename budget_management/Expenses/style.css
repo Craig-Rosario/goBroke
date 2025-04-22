@@ -440,7 +440,7 @@ header h1 {
 }
 
 
-/* Overlay for the form */
+
 .goalOverlay {
     display: none; 
     position: fixed;
@@ -448,36 +448,33 @@ header h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay for better visibility */
+    background-color: rgba(0, 0, 0, 0.7); 
     z-index: 999;
 }
 
-/* Form container */
 .addGoalForm {
     display: none; 
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centering the form */
-    background-color: #1e1e1e; /* Dark background for the form */
+    transform: translate(-50%, -50%); 
+    background-color: #1e1e1e; 
     color: #fff;
     border-radius: 15px;
     padding: 30px;
     width: 400px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 1000;
-    animation: formSlideIn 0.3s ease-out; /* Animation for showing the form */
+    animation: formSlideIn 0.3s ease-out; 
 }
 
-/* Title Styling */
 .addGoalForm h1 {
     text-align: center;
     font-size: 24px;
-    color: #FF6B6B; /* Neon Red */
+    color: #FF6B6B; 
     margin-bottom: 20px;
 }
 
-/* Close Button */
 .addGoalForm .closeBtn {
     position: absolute;
     top: 10px;
@@ -486,15 +483,14 @@ header h1 {
     border: none;
     font-size: 25px;
     cursor: pointer;
-    color: #FF6B6B; /* Neon Red */
+    color: #FF6B6B; 
     transition: color 0.3s ease;
 }
 
 .addGoalForm .closeBtn:hover {
-    color: #FF3B3B; /* Slightly darker red for hover */
+    color: #FF3B3B; 
 }
 
-/* Form fields */
 .addGoalForm label {
     font-size: 16px;
     margin-bottom: 10px;
@@ -513,15 +509,14 @@ header h1 {
 }
 
 .addGoalForm input:focus {
-    border-color: #FF6B6B; /* Neon Red border on focus */
+    border-color: #FF6B6B; 
     outline: none;
 }
 
-/* Submit Button */
 .addGoalForm button.submitForm {
     width: 100%;
     padding: 15px;
-    background-color: #FF6B6B; /* Neon Red */
+    background-color: #FF6B6B;
     color: white;
     border: none;
     border-radius: 10px;
@@ -531,10 +526,9 @@ header h1 {
 }
 
 .addGoalForm button.submitForm:hover {
-    background-color: #FF3B3B; /* Darker red for hover */
+    background-color: #FF3B3B; 
 }
 
-/* Form Slide-in Animation */
 @keyframes formSlideIn {
     from {
         opacity: 0;

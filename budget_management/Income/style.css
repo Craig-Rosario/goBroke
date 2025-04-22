@@ -162,7 +162,7 @@ body {
 
 header h1 {
     font-size: 30px;
-    color: #00FF7F; /* Income header color */
+    color: #00FF7F; 
 }
 
 .income {
@@ -206,7 +206,7 @@ header h1 {
 .incomAmount {
     font-size: 1.6rem;
     font-weight: 600;
-    color: #00FF7F; /* Income amount color */
+    color: #00FF7F; 
     text-align: center;
     word-break: break-word;
     max-width: 100%;
@@ -233,7 +233,7 @@ header h1 {
     transform: translate(-50%, -25%);
     font-size: 1.6rem;
     font-weight: 600;
-    color: #00FF7F; /* Income chart text color */
+    color: #00FF7F;
     text-align: center;
     white-space: nowrap;
 }
@@ -314,7 +314,7 @@ header h1 {
 }
 
 .tableCard td:nth-child(2) {
-    color: #00FF7F; /* Income amount in table */
+    color: #00FF7F; 
     font-weight: bold;
 }
 
@@ -387,7 +387,7 @@ header h1 {
 }
 
 .submitForm {
-    background-color: #00FF7F; /* Income submit button */
+    background-color: #00FF7F; 
     border: none;
     padding: 5px;
     border-radius: 10px;
@@ -418,7 +418,6 @@ header h1 {
     display: none;
 }
 
-/* Overlay for the goal form */
 .goalOverlay {
     display: none;
     position: fixed;
@@ -430,7 +429,6 @@ header h1 {
     z-index: 999;
 }
 
-/* Goal form container */
 .addGoalForm {
     display: none;
     position: fixed;
@@ -447,15 +445,13 @@ header h1 {
     animation: formSlideIn 0.3s ease-out;
 }
 
-/* Goal form Title Styling */
 .addGoalForm h1 {
     text-align: center;
     font-size: 24px;
-    color: #00FF7F; /* Income goal title color */
+    color: #00FF7F; 
     margin-bottom: 20px;
 }
 
-/* Goal form Close Button */
 .addGoalForm .closeBtn {
     position: absolute;
     top: 10px;
@@ -464,15 +460,14 @@ header h1 {
     border: none;
     font-size: 25px;
     cursor: pointer;
-    color: #00FF7F; /* Income goal close button color */
+    color: #00FF7F; 
     transition: color 0.3s ease;
 }
 
 .addGoalForm .closeBtn:hover {
-    color: #00C957; /* Darker green for hover */
+    color: #00C957; 
 }
 
-/* Goal form fields */
 .addGoalForm label {
     font-size: 16px;
     margin-bottom: 10px;
@@ -491,15 +486,14 @@ header h1 {
 }
 
 .addGoalForm input:focus {
-    border-color: #00FF7F; /* Income goal focus color */
+    border-color: #00FF7F; 
     outline: none;
 }
 
-/* Goal form Submit Button */
 .addGoalForm button.submitForm {
     width: 100%;
     padding: 15px;
-    background-color: #00FF7F; /* Income goal submit button */
+    background-color: #00FF7F; 
     color: white;
     border: none;
     border-radius: 10px;
@@ -509,7 +503,7 @@ header h1 {
 }
 
 .addGoalForm button.submitForm:hover {
-    background-color: #00C957; /* Darker green for hover */
+    background-color: #00C957; 
 }
 
 /* Form Slide-in Animation */

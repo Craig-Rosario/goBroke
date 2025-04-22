@@ -1,32 +1,42 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Orbitron', sans-serif;
     box-sizing: border-box;
 }
 
-body { 
+body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     background: url('../../public/assets/BG.png') no-repeat center center/cover;
+    background-color: #0d0d0d;
+    color: #fff;
 }
 
-
+form {
+    width: 100%;
+}
 
 .wrap {
-    height: auto;
-    color: white;
-    border: 2px solid rgba(255,255,255,0.2);
-    background-color: rgba(40, 44, 51, 0.01);
-    backdrop-filter: blur(20px);
-    width: 350px;
-    padding: 25px;
-    border-radius: 15px;
+    background: rgba(15, 15, 15, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 20px rgba(0, 255, 127, 0.4); /* Green glow */
+    backdrop-filter: blur(25px);
+    border-radius: 20px;
+    padding: 30px;
+    width: 360px;
     text-align: center;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-    opacity: 0.85;
+    animation: fadeInPop 0.6s ease-out;
+}
+
+.wrap h1 {
+    margin-bottom: 20px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 5px #00FF7F; /* Green glow effect */
 }
 
 .wrap2 {
@@ -36,44 +46,39 @@ body {
     width: 100%;
 }
 
-.wrap h1 {
-    margin-bottom: 10px;
-    font-size: 24px;
-}
-
-.red {
-    color: #FF4C4C;
-}
-
-.green {
-    color: #00FF7F;
-}
-
 .wrap2 h2 {
-    font-size: 20px;
-    margin-bottom: 15px;
+    font-size: 22px;
+    margin-bottom: 25px;
 }
 
 .mail, .pass {
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     text-align: left;
 }
 
 label {
     font-size: 14px;
+    margin-bottom: 6px;
     display: block;
-    margin-bottom: 5px;
+    color: #eee;
 }
 
 input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background: #fff;
-    color: black;
-    border-radius: 5px;
+    padding: 12px;
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    transition: border 0.3s ease;
+}
+
+input:focus {
     outline: none;
+    border: 1px solid #00FF7F; /* Green focus border */
+    box-shadow: 0 0 8px #00FF7F; /* Green glow on focus */
 }
 
 #fp {
@@ -86,46 +91,56 @@ input {
 
 .signin-btn {
     width: 100%;
-    padding: 10px;
-    background: #0b4f9e;
-    color: white;
+    padding: 12px;
+    background: linear-gradient(90deg, #00FF7F, #00FF33); /* Green gradient */
+    color: #fff;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 8px;
     font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 12px #00FF7F;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
 }
 
 .signin-btn:hover {
-    background: #0a3d7a;
+    background: linear-gradient(90deg, #00FF33, #00FF7F);
+    box-shadow: 0 0 18px #00FF7F; /* Glow on hover */
 }
 
 p {
-    margin: 15px 0;
+    margin: 20px 0;
     font-size: 14px;
+    color: #aaa;
 }
 
 .social-buttons {
     display: flex;
     justify-content: center;
     gap: 15px;
+    margin-top: 10px;
 }
 
 .social-buttons button {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    background: white;
-    color: black;
+    background: #1a1a1a;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
-    border: none;
+    font-size: 22px;
+    border: 2px solid #444;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px #000;
 }
 
 .social-buttons button:hover {
-    background: #ddd;
+    background: #2a2a2a;
+    box-shadow: 0 0 12px #fff;
 }
 
 .register-text {
@@ -136,4 +151,30 @@ p {
 .register-text a {
     color: lightblue;
     text-decoration: none;
+}
+
+.register-text a:hover {
+    text-decoration: underline;
+}
+
+@keyframes fadeInPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.red {
+    color: #ff4c4c;
+    text-shadow: 0 0 5px #ff4c4c;
+}
+
+.green {
+    color: #00FF7F;
+    text-shadow: 0 0 5px #00FF7F;
 }

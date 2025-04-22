@@ -78,8 +78,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p>or continue with</p>
             <div class="social-buttons">
                 <button class="google-btn"><i class="fab fa-google"></i></button>
-                <button class="github-btn"><i class="fab fa-github"></i></button>
-                <button class="facebook-btn"><i class="fab fa-facebook-f"></i></button>
             </div>
             <p>Already have an account? <a href="../Login/login.php" style="color:lightblue; text-decoration:none;">Log in</a></p>
         </div>
