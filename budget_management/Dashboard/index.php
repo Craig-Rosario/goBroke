@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+    </head>
 <body>
     <div class="sideBar">
         <div class="sideBarTitle">
@@ -76,12 +76,12 @@
                         if ($upcomingReminders->num_rows > 0):
                             while ($row = $upcomingReminders->fetch_assoc()):
                         ?>
-                                <li><?= htmlspecialchars($row['reminder_name']) ?> - ₹<?= number_format($row['reminder_amount']) ?></li>
+                                    <li><?= htmlspecialchars($row['reminder_name']) ?> - ₹<?= number_format($row['reminder_amount']) ?></li>
                         <?php
                             endwhile;
                         else:
                         ?>
-                            <li>No upcoming reminders</li>
+                                    <li>No upcoming reminders</li>
                         <?php endif;
 
                         $conn->close();
