@@ -53,16 +53,16 @@
 
         <div class="analytics">
             <div class="incomeCard">
-                <h4>Income</h4>
+                <h4>Income Distribution</h4>
                 <div class="card">
-                    <p class="income">₹89,000.70</p>
+                    
                     <canvas id="incomeChart"></canvas>
                 </div>
             </div>
             <div class="expenseCard">
-                <h4>Expenses</h4>
+                <h4>Expense Distribution</h4>
                 <div class="card">
-                    <p class="expenses">₹42,000.30</p>
+                    
                     <canvas id="expenseChart"></canvas>
                 </div>
             </div>

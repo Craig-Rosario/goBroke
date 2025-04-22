@@ -30,6 +30,10 @@ function updateSavingsCard(totalIncome, savingsAmount) {
         datasets: [{
             data: [Math.abs(savingsAmount), Math.max(0 - savingsAmount, 0)], // Use absolute value for chart data
             backgroundColor: savingsAmount >= 0 ? ['#00FF7F', '#f0f0f0'] : ['#FF4C4C', '#f0f0f0'], // Green if positive, red if negative
+            borderColor: ['rgba(0, 180, 90, 1)', 'rgba(60, 60, 60, 1)'],
+            borderWidth: 2,
+            hoverBorderColor: ['rgba(0, 150, 70, 1)', 'rgba(90, 90, 90, 1)'],
+            hoverBorderWidth: 3,
             borderWidth: 0
         }]
     };
@@ -77,16 +81,26 @@ function renderIncomeCategoryChart(data) { // Modified to accept data
                     'rgba(255, 159, 64, 0.8)'
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    'rgba(200, 50, 90, 0.9)',
+                    'rgba(40, 120, 200, 0.9)',
+                    'rgba(200, 170, 50, 0.9)',
+                    'rgba(40, 150, 150, 0.9)',
+                    'rgba(120, 80, 220, 0.9)',
+                    'rgba(200, 120, 40, 0.9)'
                 ],
-                borderWidth: 1
+                borderWidth: 2,
+                hoverBorderColor: [
+                    'rgba(180, 30, 70, 1)',
+                    'rgba(30, 100, 180, 1)',
+                    'rgba(180, 150, 30, 1)',
+                    'rgba(30, 130, 130, 1)',
+                    'rgba(100, 60, 200, 1)',
+                    'rgba(180, 100, 20, 1)'
+                ],
+                hoverBorderWidth: 3
             }]
         },
+        
         options: {
             responsive: true,
             maintainAspectRatio: false,
@@ -94,7 +108,7 @@ function renderIncomeCategoryChart(data) { // Modified to accept data
                 legend: {
                     position: 'bottom',
                     labels: {
-                        color: '#333'
+                        color: '#FFFFFF'
                     }
                 },
                 tooltip: {
@@ -130,16 +144,26 @@ function renderExpenseCategoryChart(data) { // Modified to accept data
                     'rgba(255, 159, 64, 0.8)'
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    'rgba(200, 50, 90, 1)',
+                    'rgba(40, 120, 200, 1)',
+                    'rgba(200, 170, 50, 1)',
+                    'rgba(40, 150, 150, 1)',
+                    'rgba(120, 80, 220, 1)',
+                    'rgba(200, 120, 40, 1)'
                 ],
-                borderWidth: 1
+                borderWidth: 2,
+                hoverBorderColor: [
+                    'rgba(180, 30, 70, 1)',
+                    'rgba(30, 100, 180, 1)',
+                    'rgba(180, 150, 30, 1)',
+                    'rgba(30, 130, 130, 1)',
+                    'rgba(100, 60, 200, 1)',
+                    'rgba(180, 100, 20, 1)'
+                ],
+                hoverBorderWidth: 3
             }]
         },
+        
         options: {
             responsive: true,
             maintainAspectRatio: false,
@@ -147,7 +171,7 @@ function renderExpenseCategoryChart(data) { // Modified to accept data
                 legend: {
                     position: 'bottom',
                     labels: {
-                        color: '#333'
+                        color: '#FFFFFF'
                     }
                 },
                 tooltip: {

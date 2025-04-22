@@ -8,7 +8,7 @@
 body {
     display: flex;
     min-height: 100vh;
-    background-color: #0d1117;
+    background-color: #121212;
     color: #fff;
     font-smoothing: antialiased;
 }
@@ -19,12 +19,11 @@ body {
     min-height: 100vh;
     position: fixed;
     width: 250px;
-    background-color: #161b22;
+    background-color: #1A1A1A;
     padding: 20px;
     transition: transform 0.3s ease, width 0.3s ease;
     overflow: hidden;
     z-index: 10;
-    box-shadow: 0px 4px 15px rgba(0, 255, 255, 0.1);
 }
 
 .sideBar.collapsed {
@@ -43,25 +42,20 @@ body {
 
 .sideBarTitle h2 {
     margin: 0;
-    font-size: 1.5rem;
-    color: #00BFFF;
     transition: 0.3s;
 }
 
 .sideBarTitle h3 {
     margin-left: 5px;
     margin-bottom: 10px;
-    color: #7FDBFF;
 }
 
 .red {
     color: #FF4C4C;
-    text-shadow: 0px 0px 10px rgba(255, 76, 76, 0.8);
 }
 
 .green {
     color: #00FF7F;
-    text-shadow: 0px 0px 10px rgba(0, 255, 127, 0.8);
 }
 
 .shortText {
@@ -81,19 +75,17 @@ body {
 .toggleButton {
     background: transparent;
     border: none;
-    color: #00BFFF;
+    color: #fff;
     font-size: 24px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: 0.3s;
     padding: 5px;
     border-radius: 5px;
     margin-left: 8px;
 }
 
 .toggleButton:hover {
-    background: #30363d;
-    box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.5);
-    transform: scale(1.1);
+    background: #222831;
 }
 
 .sideBar nav ul li a {
@@ -101,14 +93,12 @@ body {
     color: inherit;
 }
 
-.sideBar nav ul,
-.sideBar .logout {
+.sideBar nav ul, .sideBar .logout {
     list-style: none;
     padding: 0;
 }
 
-.sideBar nav ul li,
-.sideBar .logout li {
+.sideBar nav ul li, .sideBar .logout li {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -116,10 +106,9 @@ body {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: 0.3s;
     white-space: nowrap;
     overflow: hidden;
-    background: #1f2429;
 }
 
 .sideBar ul li i {
@@ -139,11 +128,8 @@ body {
     transition: 0.3s;
 }
 
-.sideBar nav ul li:hover,
-.sideBar .logout li:hover {
-    background-color: #30363d;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-    transform: scale(1.05);
+.sideBar nav ul li:hover, .sideBar .logout li:hover {
+    background-color: #222831;
 }
 
 .logout {
@@ -153,6 +139,10 @@ body {
 .logout li a {
     text-decoration: none;
     color: inherit;
+}
+
+.sideBar nav ul li:hover, .sideBar .logout li:hover {
+    background-color: #222831;
 }
 
 .mainContainer {
@@ -169,7 +159,6 @@ body {
 
 header h1 {
     font-size: 30px;
-    text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
 }
 
 header p {
@@ -192,13 +181,11 @@ header p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .savingsCard:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 25px rgba(0, 255, 255, 0.7);
 }
 
 .savingsCard canvas {
@@ -219,7 +206,6 @@ header p {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
 }
 
 .chartText {
@@ -253,7 +239,6 @@ header p {
     flex: 1;
     text-align: center;
     transition: all 0.3s ease;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
 }
 
 .sideBar.collapsed + .mainContainer .card {
@@ -263,7 +248,6 @@ header p {
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 25px rgba(0, 255, 255, 0.7);
 }
 
 .card h4 {
@@ -273,13 +257,11 @@ header p {
 .income {
     color: #00FF7F;
     font-weight: bold;
-    text-shadow: 0 0 15px rgba(0, 255, 127, 0.6);
 }
 
 .expenses {
     color: #FF4C4C;
     font-weight: bold;
-    text-shadow: 0 0 15px rgba(255, 76, 76, 0.6);
 }
 
 .reminders {
@@ -288,6 +270,7 @@ header p {
     background-color: #222b36;
     padding: 20px;
     border-radius: 15px;
+    min-width: 350px;
 }
 
 .reminders h3 {
@@ -304,11 +287,9 @@ header p {
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 5px;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
     transition: all 0.3s ease;
 }
 
 .reminders ul li:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
 }
