@@ -9,9 +9,19 @@ function updateExpenseChart(spentAmount, limitAmount) {
     const chartData = {
         datasets: [{
             data: [spentAmount, remaining],
-            backgroundColor: ['#FF6B6B', '#f0f0f0'],
-            borderWidth: 0
-        }]
+            backgroundColor: ['#FF6B6B', '#f0f0f0'], // Red and light gray colors for segments
+            borderColor: [
+                '#E14D4D',  // Darker neon green for border
+                '#d0d0d0'   // Darker light gray for border
+            ],
+            borderWidth: 3,  // Prominent border around segments
+            hoverBorderWidth: 6,  // Glow effect on hover
+            hoverBorderColor: [
+                '#E14D4D',  // Darker neon green on hover
+                '#d0d0d0'   // Darker light gray on hover
+            ],
+            hoverOffset: 10,  // Slight offset effect on hover
+        }]        
     };
 
     const chartOptions = {
@@ -62,24 +72,35 @@ function renderExpenseCategoryChart() {
                     datasets: [{
                         data: data.amounts,
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.8)',
-                            'rgba(54, 162, 235, 0.8)',
-                            'rgba(255, 206, 86, 0.8)',
-                            'rgba(75, 192, 192, 0.8)',
-                            'rgba(153, 102, 255, 0.8)',
-                            'rgba(255, 159, 64, 0.8)'
+                            'rgba(105, 179, 105, 0.8)',    // Deep Green
+                            'rgba(127, 127, 237, 0.8)',      // Deep Blue
+                            'rgba(255, 140, 0, 0.8)',      // Dark Amber
+                            'rgba(50, 148, 148, 0.8)',     // Dark Slate
+                            'rgba(148, 72, 58, 0.8)',      // Burnt Umber
+                            'rgba(148, 0, 211, 0.8)'       // Dark Violet
                         ],
                         borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
+                            'rgba(105, 179, 105, 0.8)',    // Deep Green
+                            'rgba(127, 127, 237, 0.8)',      // Deep Blue
+                            'rgba(255, 140, 0, 0.8)',      // Dark Amber
+                            'rgba(50, 148, 148, 0.8)',     // Dark Slate
+                            'rgba(148, 72, 58, 0.8)',      // Burnt Umber
+                            'rgba(148, 0, 211, 0.8)'       // Dark Violet
                         ],
-                        borderWidth: 1
+                        borderWidth: 3, // Make borders more prominent
+                        hoverBorderWidth: 6, // Increase hover border width
+                        hoverBorderColor: [
+                            'rgba(105, 179, 105, 0.8)',    // Deep Green
+                            'rgba(127, 127, 237, 0.8)',      // Deep Blue
+                            'rgba(255, 140, 0, 0.8)',      // Dark Amber
+                            'rgba(50, 148, 148, 0.8)',     // Dark Slate
+                            'rgba(148, 72, 58, 0.8)',      // Burnt Umber
+                            'rgba(148, 0, 211, 0.8)'       // Dark Violet
+                        ],
+                        hoverOffset: 10, // Slightly offset on hover
                     }]
                 },
+                
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,

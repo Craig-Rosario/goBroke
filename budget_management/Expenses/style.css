@@ -8,7 +8,7 @@
 body {
     display: flex;
     min-height: 100vh;  
-    background-color: #282C37;
+    background-color: #121212	;
     color: #fff;
 }
 
@@ -19,7 +19,7 @@ body {
     min-height: 100vh;  
     position: fixed;         
     width: 250px;  
-    background-color: #1E212B;
+    background-color: #1A1A1A;
     padding: 20px;
     transition: transform 0.3s ease, width 0.3s ease;
     overflow: hidden;
@@ -91,7 +91,7 @@ body {
 }
 
 .toggleButton:hover {
-    background: #495064;          
+    background: #222831;          
 }
 
 .sideBar nav ul li a {
@@ -140,7 +140,7 @@ body {
 
 
 .sideBar nav ul li:hover, .sideBar .logout li:hover {
-    background-color: #495064;
+    background-color: #222831;
 }
 
 
@@ -156,7 +156,7 @@ body {
 }
 
 .sideBar nav ul li:hover, .sideBar .logout li:hover {
-    background-color: #495064;
+    background-color: #222831;
 }
 
 
@@ -176,6 +176,7 @@ body {
 
 header h1 {
     font-size: 30px;
+    color: #FF4C4C;
 }
 
 
@@ -208,7 +209,7 @@ header h1 {
 
 .incomeCard {
     margin-top: 20px;
-    background-color: #495064;
+    background-color: #222831;
     padding: 20px;
     border-radius: 10px;
     height: 350px;
@@ -271,7 +272,7 @@ header h1 {
 
 
 .addBtn{
-    background-color: #1E212B;
+    background-color: #1A1A1A;
     border: none;
     color: white;
     padding: 7px;
@@ -281,11 +282,11 @@ header h1 {
 }
 
 .addBtn:hover{
-    background-color: #495064;
+    background-color: #222831;
 }
 
 .incomeTable {
-    background-color: #1E212B;
+    background-color: #1A1A1A;
     padding: 20px;
     border-radius: 10px;
     
@@ -300,13 +301,13 @@ header h1 {
 .tableCard {
     overflow-x: auto;
     border-radius: 8px;
-    background-color: #282C37;
+    background-color: #121212	;
 }
 
 .tableCard table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #495064;
+    background-color: #222831;
     border-radius: 8px;
     overflow: hidden;
 }
@@ -318,7 +319,7 @@ header h1 {
 }
 
 .tableCard th {
-    background-color: #333745;
+    background-color: #1E1E1E;
 }
 
 .tableCard tr:nth-child(even) {
@@ -326,7 +327,7 @@ header h1 {
 }
 
 .tableCard tr:hover {
-    background-color: #505870;
+    background-color: #2F2F2F;
 }
 
 .tableCard td {
@@ -365,7 +366,7 @@ header h1 {
 }
 
 .addFormCard {
-    background: #333745;
+    background: #1E1E1E;
     padding: 20px;
     border-radius: 12px;
     width: 400px; 
@@ -381,7 +382,7 @@ header h1 {
 }
 
 .addFormCard input {
-    background-color: #505870;
+    background-color: #2F2F2F;
     color: white;
     border: none;
     padding: 8px;
