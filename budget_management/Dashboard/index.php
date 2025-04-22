@@ -7,7 +7,15 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    </head>
+    <style>
+        .savings-header {
+            margin-top: 20px; /* Adjust as needed for spacing */
+            margin-left: 20px; /* Adjust as needed for left alignment */
+            font-size: 1.5em; /* Adjust font size as desired */
+            color: #f0f0f0; /* Match other header colors */
+        }
+    </style>
+</head>
 <body>
     <div class="sideBar">
         <div class="sideBarTitle">
@@ -37,9 +45,9 @@
             <p>Welcome back, Craig</p>
         </header>
 
+        <h3 class="savings-header">Your Savings</h3>
         <div class="savingsCard">
             <canvas id="goalChart"></canvas>
-
             <div class="chartText" id="chartText">₹0.00</div>
         </div>
 
@@ -76,12 +84,12 @@
                         if ($upcomingReminders->num_rows > 0):
                             while ($row = $upcomingReminders->fetch_assoc()):
                         ?>
-                                    <li><?= htmlspecialchars($row['reminder_name']) ?> - ₹<?= number_format($row['reminder_amount']) ?></li>
+                                        <li><?= htmlspecialchars($row['reminder_name']) ?> - ₹<?= number_format($row['reminder_amount']) ?></li>
                         <?php
                             endwhile;
                         else:
                         ?>
-                                    <li>No upcoming reminders</li>
+                                        <li>No upcoming reminders</li>
                         <?php endif;
 
                         $conn->close();
