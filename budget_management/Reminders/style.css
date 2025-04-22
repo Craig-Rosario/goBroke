@@ -9,7 +9,7 @@
 body {
     display: flex;
     min-height: 100vh;
-    background-color: #282C37;
+    background-color: #121212;
     color: #fff;
 }
 
@@ -19,7 +19,7 @@ body {
     min-height: 100vh;
     position: fixed;
     width: 250px;
-    background-color: #1E212B;
+    background-color: #1A1A1A	;
     padding: 20px;
     transition: transform 0.3s ease, width 0.3s ease;
     overflow: hidden;
@@ -93,7 +93,7 @@ body {
 }
 
 .toggleButton:hover {
-    background: #495064;
+    background: #222831	;
 }
 
 .sideBar nav ul li a {
@@ -137,7 +137,7 @@ body {
 }
 
 .sideBar nav ul li:hover, .sideBar .logout li:hover {
-    background-color: #495064;
+    background-color: #222831	;
 }
 
 .logout {
@@ -150,7 +150,7 @@ body {
 }
 
 .sideBar nav ul li:hover, .sideBar .logout li:hover {
-    background-color: #495064;
+    background-color: #222831	;
 }
 
 .mainContainer {
@@ -169,6 +169,7 @@ body {
 
 header h1 {
     font-size: 30px;
+    color: #37f3ea;
 }
 
 .income{
@@ -188,7 +189,7 @@ header h1 {
 
 .totalIncome .incomeCard {
     margin-top: 20px;
-    background-color: #495064;
+    background-color: #222831	;
     padding: 15px;
     border-radius: 10px;
     height: auto;
@@ -246,7 +247,7 @@ header h1 {
 
 .incomeChart .incomeCard {
     margin-top: 20px;
-    background-color: #495064;
+    background-color: #222831	;
     padding: 20px;
     border-radius: 10px;
     height: auto; /* Adjusted height */
@@ -271,7 +272,7 @@ header h1 {
 }
 
 .addBtn{
-    background-color: #1E212B;
+    background-color: #1A1A1A	;
     border: none;
     color: white;
     padding: 7px;
@@ -281,11 +282,11 @@ header h1 {
 }
 
 .addBtn:hover{
-    background-color: #495064;
+    background-color: #222831	;
 }
 
 .incomeTable {
-    background-color: #1E212B;
+    background-color: #1A1A1A	;
     padding: 20px;
     border-radius: 10px;
     width: 100%;
@@ -305,7 +306,7 @@ header h1 {
 .tableCard table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #495064;
+    background-color: #222831	;
     border-radius: 8px;
     overflow: hidden;
 }
@@ -317,7 +318,7 @@ header h1 {
 }
 
 .tableCard th {
-    background-color: #333745;
+    background-color: #1E1E1E;
 }
 
 .tableCard tr:nth-child(even) {
@@ -325,7 +326,7 @@ header h1 {
 }
 
 .tableCard tr:hover {
-    background-color: #505870;
+    background-color: #2F2F2F;
 }
 
 .tableCard td {
@@ -384,7 +385,7 @@ header h1 {
 }
 
 .addIncomeFormCard {
-    background: #333745;
+    background: #1E1E1E;
     padding: 20px;
     border-radius: 12px;
     width: 400px;
@@ -400,7 +401,7 @@ header h1 {
 }
 
 .addIncomeFormCard input {
-    background-color: #505870;
+    background-color: #2F2F2F;
     color: white;
     border: none;
     padding: 8px;
