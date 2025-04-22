@@ -22,7 +22,7 @@ form {
 .wrap {
     background: rgba(15, 15, 15, 0.9);
     border: 2px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 0 20px rgba(0, 255, 127, 0.4); /* Green glow */
+    box-shadow: 0 0 20px rgba(0, 255, 127, 0.4); 
     backdrop-filter: blur(25px);
     border-radius: 20px;
     padding: 30px;
@@ -36,7 +36,7 @@ form {
     font-size: 36px;
     font-weight: bold;
     color: #fff;
-    text-shadow: 0 0 5px #00FF7F; /* Green glow effect */
+    text-shadow: 0 0 5px #00FF7F; 
 }
 
 .wrap2 {
@@ -77,8 +77,8 @@ input {
 
 input:focus {
     outline: none;
-    border: 1px solid #00FF7F; /* Green focus border */
-    box-shadow: 0 0 8px #00FF7F; /* Green glow on focus */
+    border: 1px solid #00FF7F; 
+    box-shadow: 0 0 8px #00FF7F; 
 }
 
 #fp {
@@ -92,7 +92,7 @@ input:focus {
 .signin-btn {
     width: 100%;
     padding: 12px;
-    background: linear-gradient(90deg, #00FF7F, #00FF33); /* Green gradient */
+    background: linear-gradient(90deg, #00FF7F, #00FF33); 
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -106,7 +106,7 @@ input:focus {
 
 .signin-btn:hover {
     background: linear-gradient(90deg, #00FF33, #00FF7F);
-    box-shadow: 0 0 18px #00FF7F; /* Glow on hover */
+    box-shadow: 0 0 18px #00FF7F; 
 }
 
 p {

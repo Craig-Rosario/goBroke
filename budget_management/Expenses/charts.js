@@ -72,32 +72,32 @@ function renderExpenseCategoryChart() {
                     datasets: [{
                         data: data.amounts,
                         backgroundColor: [
-                            'rgba(105, 179, 105, 0.8)',    // Deep Green
-                            'rgba(127, 127, 237, 0.8)',      // Deep Blue
-                            'rgba(255, 140, 0, 0.8)',      // Dark Amber
-                            'rgba(50, 148, 148, 0.8)',     // Dark Slate
-                            'rgba(148, 72, 58, 0.8)',      // Burnt Umber
-                            'rgba(148, 0, 211, 0.8)'       // Dark Violet
+                            'rgba(105, 179, 105, 0.8)',    
+                            'rgba(127, 127, 237, 0.8)',      
+                            'rgba(255, 140, 0, 0.8)',      
+                            'rgba(50, 148, 148, 0.8)',    
+                            'rgba(148, 72, 58, 0.8)',      
+                            'rgba(148, 0, 211, 0.8)'       
                         ],
                         borderColor: [
-                            'rgba(105, 179, 105, 0.8)',    // Deep Green
-                            'rgba(127, 127, 237, 0.8)',      // Deep Blue
-                            'rgba(255, 140, 0, 0.8)',      // Dark Amber
-                            'rgba(50, 148, 148, 0.8)',     // Dark Slate
-                            'rgba(148, 72, 58, 0.8)',      // Burnt Umber
-                            'rgba(148, 0, 211, 0.8)'       // Dark Violet
+                            'rgba(105, 179, 105, 0.8)',    
+                            'rgba(127, 127, 237, 0.8)',      
+                            'rgba(255, 140, 0, 0.8)',      
+                            'rgba(50, 148, 148, 0.8)',     
+                            'rgba(148, 72, 58, 0.8)',    
+                            'rgba(148, 0, 211, 0.8)'      
                         ],
-                        borderWidth: 3, // Make borders more prominent
-                        hoverBorderWidth: 6, // Increase hover border width
+                        borderWidth: 3, 
+                        hoverBorderWidth: 6, 
                         hoverBorderColor: [
-                            'rgba(105, 179, 105, 0.8)',    // Deep Green
-                            'rgba(127, 127, 237, 0.8)',      // Deep Blue
-                            'rgba(255, 140, 0, 0.8)',      // Dark Amber
-                            'rgba(50, 148, 148, 0.8)',     // Dark Slate
-                            'rgba(148, 72, 58, 0.8)',      // Burnt Umber
-                            'rgba(148, 0, 211, 0.8)'       // Dark Violet
+                            'rgba(105, 179, 105, 0.8)',    
+                            'rgba(127, 127, 237, 0.8)',     
+                            'rgba(255, 140, 0, 0.8)',      
+                            'rgba(50, 148, 148, 0.8)',    
+                            'rgba(148, 72, 58, 0.8)',      
+                            'rgba(148, 0, 211, 0.8)'       
                         ],
-                        hoverOffset: 10, // Slightly offset on hover
+                        hoverOffset: 10, 
                     }]
                 },
                 

@@ -505,7 +505,6 @@ header h1 {
     background-color: #00C957; 
 }
 
-/* Form Slide-in Animation */
 @keyframes formSlideIn {
     from {
         opacity: 0;
@@ -519,10 +518,10 @@ header h1 {
 
 
 .incomeCategoryChart{
-    box-shadow: 0 0 10px rgba(0, 255, 127, 1),  /* Green glow */
-    0 0 10px rgba(255, 99, 132, 1),  /* Red glow */
-    0 0 10px rgba(0, 255, 255, 1),  /* Cyan glow */
-    0 0 10px rgba(255, 165, 0, 1),  /* Orange glow */
-    0 0 10px rgba(255, 105, 180, 1),  /* Pink glow */
-    0 0 10px rgba(0, 191, 255, 1);  /* Blue glow */
+    box-shadow: 0 0 10px rgba(0, 255, 127, 1),  
+    0 0 10px rgba(255, 99, 132, 1),  
+    0 0 10px rgba(0, 255, 255, 1),  
+    0 0 10px rgba(255, 165, 0, 1),  
+    0 0 10px rgba(255, 105, 180, 1),  
+    0 0 10px rgba(0, 191, 255, 1);  
 }

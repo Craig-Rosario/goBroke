@@ -6,8 +6,8 @@ function fetchDashboardData() {
     Promise.all([
         fetch('../Income/fetch_income_categories.php').then(response => response.json()),
         fetch('../Expenses/fetch_expense_categories.php').then(response => response.json()),
-        fetch('../Income/fetch_total_income.php').then(response => response.json()), // New fetch for total income
-        fetch('../Expenses/fetch_total_expense.php').then(response => response.json()) // New fetch for total expense
+        fetch('../Income/fetch_total_income.php').then(response => response.json()), 
+        fetch('../Expenses/fetch_total_expense.php').then(response => response.json()) 
     ])
     .then(([incomeData, expenseData, totalIncomeData, totalExpenseData]) => {
         renderIncomeCategoryChart(incomeData);
@@ -23,13 +23,13 @@ function fetchDashboardData() {
 }
 
 function updateSavingsCard(totalIncome, savingsAmount) {
-    const remaining = Math.max(totalIncome - savingsAmount, 0); // 'remaining' might not be relevant now
+    const remaining = Math.max(totalIncome - savingsAmount, 0); 
     const formattedSavings = (savingsAmount < 0 ? '-₹' : '₹') + Math.abs(savingsAmount).toLocaleString();
 
     const chartData = {
         datasets: [{
-            data: [Math.abs(savingsAmount), Math.max(0 - savingsAmount, 0)], // Use absolute value for chart data
-            backgroundColor: savingsAmount >= 0 ? ['#00FF7F', '#f0f0f0'] : ['#FF4C4C', '#f0f0f0'], // Green if positive, red if negative
+            data: [Math.abs(savingsAmount), Math.max(0 - savingsAmount, 0)], 
+            backgroundColor: savingsAmount >= 0 ? ['#00FF7F', '#f0f0f0'] : ['#FF4C4C', '#f0f0f0'], 
             borderColor: ['rgba(0, 180, 90, 1)', 'rgba(60, 60, 60, 1)'],
             borderWidth: 2,
             hoverBorderColor: ['rgba(0, 150, 70, 1)', 'rgba(90, 90, 90, 1)'],
@@ -64,7 +64,7 @@ function updateSavingsCard(totalIncome, savingsAmount) {
     document.getElementById('chartText').textContent = formattedSavings;
 }
 
-function renderIncomeCategoryChart(data) { // Modified to accept data
+function renderIncomeCategoryChart(data) { 
     const ctx = document.getElementById('incomeChart').getContext('2d');
     new Chart(ctx, {
         type: 'pie',
@@ -127,7 +127,7 @@ function renderIncomeCategoryChart(data) { // Modified to accept data
     });
 }
 
-function renderExpenseCategoryChart(data) { // Modified to accept data
+function renderExpenseCategoryChart(data) { 
     const ctx = document.getElementById('expenseChart').getContext('2d');
     new Chart(ctx, {
         type: 'pie',

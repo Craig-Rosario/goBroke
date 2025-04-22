@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .savings-header {
-            margin-top: 20px; /* Adjust as needed for spacing */
-            margin-left: 20px; /* Adjust as needed for left alignment */
-            font-size: 1.5em; /* Adjust font size as desired */
-            color: #f0f0f0; /* Match other header colors */
+            margin-top: 20px; 
+            margin-left: 20px; 
+            font-size: 1.5em; 
+            color: #f0f0f0; 
         }
     </style>
 </head>

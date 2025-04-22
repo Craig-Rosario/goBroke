@@ -4,7 +4,6 @@ include("../Registration/database.php");
 
 $error = "";
 
-// Ensure the user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../Login/login.php");
     exit();
@@ -12,7 +11,6 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// DELETE Income
 if (isset($_GET['delete_id']) && is_numeric($_GET['delete_id'])) {
     $delete_id = (int) $_GET['delete_id'];
 
@@ -20,7 +18,6 @@ if (isset($_GET['delete_id']) && is_numeric($_GET['delete_id'])) {
     $stmt->bind_param("ii", $delete_id, $user_id);
 
     if ($stmt->execute()) {
-        // Optional: calculate total income if you use it in frontend
         $totalIncome = $conn->query("SELECT SUM(income_amount) AS total FROM incomes WHERE user_id = $user_id")->fetch_assoc()['total'] ?? 0;
 
         echo "<script>const totalIncome = " . json_encode($totalIncome) . ";</script>";
@@ -32,7 +29,6 @@ if (isset($_GET['delete_id']) && is_numeric($_GET['delete_id'])) {
     $stmt->close();
 }
 
-// Fetch income goal (if any) for the user
 $stmt = $conn->prepare("SELECT income_goal FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -40,14 +36,12 @@ $stmt->bind_result($income_goal);
 $stmt->fetch();
 $stmt->close();
 
-// INSERT or UPDATE Income and Goal
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $income_name = trim($_POST['income_name'] ?? '');
     $income_amount = floatval($_POST['income_amount'] ?? 0);
     $income_date = $_POST['income_date'] ?? '';
     $income_category = trim($_POST['income_category'] ?? '');
 
-    // Handle income goal update if provided
     if (isset($_POST['goal_amount'])) {
         $new_income_goal = floatval($_POST['goal_amount']);
 
@@ -56,7 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stmt->bind_param("di", $new_income_goal, $user_id);
 
             if ($stmt->execute()) {
-                // Optionally update the page or redirect
                 header("Location: index.php?success=Income goal updated successfully");
                 exit();
             } else {
@@ -68,10 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    // Handle adding or updating incomes
     if ($income_name && $income_amount && $income_date && $income_category) {
         if (!empty($_POST['income_id'])) {
-            // UPDATE existing income
             $income_id = (int) $_POST['income_id'];
 
             $stmt = $conn->prepare("UPDATE incomes SET income_name = ?, income_amount = ?, income_date = ?, income_category = ? WHERE id = ? AND user_id = ?");
@@ -85,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
             $stmt->close();
         } else {
-            // INSERT new income
+           
             $stmt = $conn->prepare("INSERT INTO incomes (user_id, income_name, income_amount, income_date, income_category) VALUES (?, ?, ?, ?, ?)");
             $stmt->bind_param("isdss", $user_id, $income_name, $income_amount, $income_date, $income_category);
 
