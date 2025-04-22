@@ -10,9 +10,26 @@ function updateIncomeChart(achievedIncome, userGoal) {
     const chartData = {
         datasets: [{
             data: [achievedIncome, remaining],
-            backgroundColor: ['#00FF7F', '#f0f0f0'],
-            borderWidth: 0
+            backgroundColor: [
+                '#00FF7F',  // Neon green
+                '#f0f0f0'   // Light gray
+            ],
+            borderColor: [
+                '#00CC66',  // Darker neon green for border
+                '#d0d0d0'   // Darker light gray for border
+            ],
+            borderWidth: 3,  // Prominent border around segments
+            hoverBorderWidth: 6,  // Glow effect on hover
+            hoverBorderColor: [
+                '#00CC66',  // Darker neon green on hover
+                '#d0d0d0'   // Darker light gray on hover
+            ],
+            hoverOffset: 10,  // Creates space between segments on hover
         }]
+        
+        
+        
+               
     };
 
     const chartOptions = {
@@ -63,22 +80,32 @@ function renderIncomeCategoryChart() {
                     datasets: [{
                         data: data.amounts,
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.8)',
-                            'rgba(54, 162, 235, 0.8)',
-                            'rgba(255, 206, 86, 0.8)',
-                            'rgba(75, 192, 192, 0.8)',
-                            'rgba(153, 102, 255, 0.8)',
-                            'rgba(255, 159, 64, 0.8)'
+                            'rgba(0, 255, 255, 0.8)',  // Neon cyan
+                            'rgba(255, 165, 0, 0.8)',  // Neon orange
+                            'rgba(255, 105, 180, 0.8)',  // Neon pink
+                            'rgba(0, 191, 255, 0.8)',  // Neon blue
+                            'rgba(138, 43, 226, 0.8)',  // Neon blue-violet
+                            'rgba(255, 69, 0, 0.8)'   // Neon red-orange
                         ],
                         borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
+                            'rgba(0, 255, 255, 1)',  // Neon cyan
+                            'rgba(255, 165, 0, 1)',  // Neon orange
+                            'rgba(255, 105, 180, 1)',  // Neon pink
+                            'rgba(0, 191, 255, 1)',  // Neon blue
+                            'rgba(138, 43, 226, 1)',  // Neon blue-violet
+                            'rgba(255, 69, 0, 1)'   // Neon red-orange
                         ],
-                        borderWidth: 1
+                        borderWidth: 3, // Make borders more prominent
+                        hoverBorderWidth: 6, // Increase hover border width
+                        hoverBorderColor: [
+                            'rgba(0, 255, 255, 0.8)',  // Neon cyan
+                            'rgba(255, 165, 0, 0.8)',  // Neon orange
+                            'rgba(255, 105, 180, 0.8)',  // Neon pink
+                            'rgba(0, 191, 255, 0.8)',  // Neon blue
+                            'rgba(138, 43, 226, 0.8)',  // Neon blue-violet
+                            'rgba(255, 69, 0, 0.8)'   // Neon red-orange
+                        ],
+                        hoverOffset: 10,
                     }]
                 },
                 options: {
