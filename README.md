@@ -19,7 +19,3 @@ The project combines a responsive frontend with a PHP backend to handle financia
 * Monitor expenses and categorize them
 * Set reminders for upcoming bills
 * Responsive layout with clean UI/UX
-
-
-
-Do you want me to do that?
